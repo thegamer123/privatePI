@@ -1,5 +1,7 @@
 <?php
 
+
+
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Facture;
@@ -62,21 +64,6 @@ class FactureController extends Controller
     }
 
     /**
-     * Finds and displays a facture entity.
-     *
-     * @Route("/{id}", name="facture_show")
-     * @Method("GET")
-     */
-    public function showAction(Facture $facture)
-    {
-        $deleteForm = $this->createDeleteForm($facture);
-        return $this->render('facture/show.html.twig', array(
-            'facture' => $facture,
-            'delete_form' => $deleteForm->createView(),
-        ));
-    }
-
-    /**
      * Creates a form to delete a facture entity.
      *
      * @param Facture $facture The facture entity
@@ -133,4 +120,43 @@ class FactureController extends Controller
         $em->flush();
         return new JsonResponse(['msg' => 'deleted with success'], 200);
     }
+
+
+    /**
+     * @Route("/{id}",name="facture_details")
+     * @Method({"GET"})
+     */
+
+    public function getFactureById($id)
+    {
+
+        $facture = $this->getDoctrine()->getRepository('AppBundle:Facture')->find($id);
+
+        if (empty($facture)){
+            $response=array(
+                'code'=>1,
+                'message'=>'post not found',
+                'error'=>null,
+                'result'=>null
+            );
+
+            return new JsonResponse($response, Response::HTTP_NOT_FOUND);
+        }
+
+        $data=$this->get('jms_serializer')->serialize($facture,'json');
+
+
+        $response=array(
+
+            'code'=>0,
+            'message'=>'success',
+            'errors'=>null,
+            'result'=>json_decode($data)
+
+        );
+        return new JsonResponse($response,200);
+
+    }
+
+
 }

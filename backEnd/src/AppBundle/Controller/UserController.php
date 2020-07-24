@@ -133,6 +133,8 @@ class UserController extends Controller
         return new JsonResponse($response,200);
 
     }
+
+
     /**
      * @Route("/username/{username}",name="user_details")
      * @Method({"GET"})

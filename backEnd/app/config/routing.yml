@@ -46,3 +46,8 @@ facture_create:
     path:     /facture/new
     defaults: { _controller: AppBundle\Controller\FactureController::newAction }
     methods:  [POST]
+
+factureById:
+    path:     /facture/{id}
+    defaults: { _controller: AppBundle\Controller\FactureController::getFactureById }
+    methods:  [GET]
