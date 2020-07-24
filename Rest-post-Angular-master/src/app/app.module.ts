@@ -18,6 +18,7 @@ import { MainComponent } from './main/main.component';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { UserService } from './user.service';
 import { ProfileComponent } from './profile/profile.component';
+import { FactureComponent } from './facture/facture.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,7 +27,8 @@ const routes: Routes = [
   { path: 'add-post', component: AddPostComponent, canActivate: [AuthGuard] },
   { path: 'edit-post/:id', component: EditPostComponent, canActivate: [AuthGuard] },
   { path: 'main', component: MainComponent, canActivate: [AuthGuard],children: [
-    { path: 'profile', component: ProfileComponent }
+    { path: 'profile', component: ProfileComponent },
+    { path: 'facture', component: FactureComponent }
   ]  },
 
   { path: 'register', component: SignUpComponent },
@@ -45,6 +47,7 @@ const routes: Routes = [
     MainComponent,
     SignUpComponent,
     ProfileComponent,
+    FactureComponent,
   ],
   imports: [
     BrowserModule,

@@ -18,4 +18,9 @@ export class MainComponent implements OnInit {
     this.router.navigate([''], { replaceUrl: true });
   }
 
+  
+  navigateToFacture(e) {
+    this.router.navigate(['/main/facture']);
+  }
+
 }
