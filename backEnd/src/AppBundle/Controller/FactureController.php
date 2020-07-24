@@ -31,6 +31,7 @@ class FactureController extends Controller
         $response = new Response($data);
         return $response;
 
+
 //        return $this->render('facture/index.html.twig', array(
 //            'factures' => $factures,
 //        ));
@@ -49,7 +50,15 @@ class FactureController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($facture);
         $em->flush();
-        return new Response('Facture add successfully', 201);
+        $response=array(
+
+            'code'=>0,
+            'message'=>'success',
+            'errors'=>null,
+            'result'=>'Facture add successfully'
+
+        );
+        return new JsonResponse($response,201);
     }
 
     /**
