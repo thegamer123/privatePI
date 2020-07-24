@@ -1,0 +1,48 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+
+api_login_check:
+    path: /api/login_check
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+
+user:
+    resource: "@AppBundle/Controller/UserController.php"
+    type:     annotation
+
+userById:
+    resource: "@AppBundle/Controller/UserController.php"
+    type:     annotation
+
+userSpecial:
+    path:     /user/{id}
+    defaults: { _controller: AppBundle\Controller\UserController::getUserById }
+    methods:  [GET]
+
+user_all:
+    path:     /user/allUsers
+    defaults: { _controller: AppBundle\Controller\UserController::listUsers }
+    methods:  [GET]
+
+
+user_create:
+    path:     /user/createUser
+    defaults: { _controller: AppBundle\Controller\UserController::createUser }
+    methods:  [POST]
+
+facture_list:
+    path:     /facture
+    defaults: { _controller: AppBundle\Controller\FactureController::indexAction }
+    methods:  [GET]
+
+facture_create:
+    path:     /facture/new
+    defaults: { _controller: AppBundle\Controller\FactureController::newAction }
+    methods:  [POST]
