@@ -24,8 +24,9 @@ export class FactureComponent implements OnInit {
     doc.text(20, 20, 'Do you like that?');
 
     // Save the PDF
-    doc.save('Test.pdf');
+    let blob = doc.output();
+    alert(blob);
 
- }
+  }
 
 }

@@ -1,0 +1,25 @@
+team_POST_IMAGE:
+    path:     /upload
+    defaults: { _controller: AppBundle:Team:uploadImage }
+
+team_GET:
+    path:     /
+    defaults: { _controller: AppBundle:Team:getAllTeam }
+    methods : [GET]
+
+team_POST:
+    path:     /new
+    defaults: { _controller: AppBundle:Team:newTeam }
+
+team_GET_ById:
+    path:     /{id}
+    defaults: { _controller: AppBundle:Team:getTeambyId }
+
+team_PUT_ById:
+    path:     /{id}/edit
+    defaults: { _controller: AppBundle:Team:editTeam }
+
+
+team_DELETE_ById:
+    path:     /{id}/delete
+    defaults: { _controller: AppBundle:Team:deleteTeam }

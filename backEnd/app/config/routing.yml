@@ -21,6 +21,14 @@ userById:
     resource: "@AppBundle/Controller/UserController.php"
     type:     annotation
 
+team:
+    resource: "@AppBundle/Resources/config/routing_team.yml"
+    prefix:   /team
+
+category_project:
+    resource: "@AppBundle/Resources/config/routing_category_project.yml"
+    prefix:   /category_project
+
 userSpecial:
     path:     /user/{id}
     defaults: { _controller: AppBundle\Controller\UserController::getUserById }
@@ -51,3 +59,6 @@ factureById:
     path:     /facture/{id}
     defaults: { _controller: AppBundle\Controller\FactureController::getFactureById }
     methods:  [GET]
+
+
+

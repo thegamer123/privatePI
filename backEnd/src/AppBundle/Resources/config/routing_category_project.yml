@@ -1,0 +1,26 @@
+category_project_GET:
+    path:     /
+    defaults: { _controller: AppBundle:CategoryProject:getAllCategory }
+    methods:    GET
+
+category_project_POST:
+    path:     /new
+    defaults: { _controller: AppBundle:CategoryProject:newCategory }
+    methods:    POST
+
+category_project_GET_ById:
+    path:     /{id}
+    defaults: { _controller: AppBundle:CategoryProject:getCategoryProjectbyId }
+    methods:    GET
+
+
+category_project_PUT_ById:
+    path:     /{id}/edit
+    defaults: { _controller: AppBundle:CategoryProject:editCategoryProject }
+    methods:    PUT
+
+
+category_project_DELETE_ById:
+    path: /{id}/delete
+    defaults: { _controller: AppBundle:CategoryProject:deleteCategoryProject }
+    methods: DELETE
