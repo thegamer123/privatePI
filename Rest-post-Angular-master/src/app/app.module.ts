@@ -19,6 +19,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
 import { UserService } from './user.service';
 import { ProfileComponent } from './profile/profile.component';
 import { FactureComponent } from './facture/facture.component';
+import { FactureRowComponent } from './facture-row/facture-row.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -48,6 +49,7 @@ const routes: Routes = [
     SignUpComponent,
     ProfileComponent,
     FactureComponent,
+    FactureRowComponent,
   ],
   imports: [
     BrowserModule,
