@@ -29,6 +29,14 @@ category_project:
     resource: "@AppBundle/Resources/config/routing_category_project.yml"
     prefix:   /category_project
 
+project:
+    resource: "@AppBundle/Resources/config/routing_project.yml"
+    prefix:   /projet
+
+client:
+    resource: "@AppBundle/Resources/config/routing_client.yml"
+    prefix:   /client
+
 userSpecial:
     path:     /user/{id}
     defaults: { _controller: AppBundle\Controller\UserController::getUserById }
