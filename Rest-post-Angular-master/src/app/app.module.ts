@@ -24,6 +24,19 @@ import { ListTeamComponent } from './wael/components/team/list-team/list-team.co
 import { UpdateTeamComponent } from './wael/components/team/update-team/update-team.component';
 import { AddTeamComponent } from './wael/components/team/add-team/add-team.component';
 import { TeamService } from './wael/service/team.service';
+import { ProjetService } from './marwa/projet/projet.service';
+import { GetProjectComponent } from './marwa/projet/get-project/get-project.component';
+import { EditProjectComponent } from './marwa/projet/edit-project/edit-project.component';
+import { AddProjectComponent } from './marwa/projet/add-project/add-project.component';
+import { ClientService } from './marwa/client/client.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { AddProjectCategoryComponent } from './wael/components/project-category/add-project-category/add-project-category.component';
+import { ListProjectCategoryComponent } from './wael/components/project-category/list-project-category/list-project-category.component';
+import { UpdateProjectCategoryComponent } from './wael/components/project-category/update-project-category/update-project-category.component';
+import { CategoryProjectService } from './wael/service/category-project.service';
+import { AddClientComponent } from './marwa/client/add-client/add-client.component';
+import { EditClientComponent } from './marwa/client/edit-client/edit-client.component';
+import { GetClientComponent } from './marwa/client/get-client/get-client.component';
 
 
 const routes: Routes = [
@@ -38,7 +51,17 @@ const routes: Routes = [
       { path: 'facture', component: FactureComponent },
       { path: 'team', component: ListTeamComponent },
       { path: 'team/:id', component: UpdateTeamComponent },
-      { path: 'new-team', component: AddTeamComponent }
+      { path: 'new-team', component: AddTeamComponent },
+      { path: 'projet', component: GetProjectComponent },
+      { path: 'projet/:id', component: EditProjectComponent },
+      { path: 'new-projet', component: AddProjectComponent },
+      { path: 'projet-category', component: ListProjectCategoryComponent },
+      { path: 'category/:id', component: UpdateProjectCategoryComponent },
+      { path: 'new-category', component: AddProjectCategoryComponent },
+      { path: 'clients', component: GetClientComponent },
+      { path: 'client/:id', component: EditClientComponent },
+      { path: 'new-client', component: AddClientComponent }
+
     ]
   },
 ];
@@ -61,15 +84,31 @@ const routes: Routes = [
     ListTeamComponent,
     UpdateTeamComponent,
     AddTeamComponent,
+    GetProjectComponent,
+    EditProjectComponent,
+    AddProjectComponent,
+    ListProjectCategoryComponent,
+    UpdateProjectCategoryComponent,
+    AddProjectCategoryComponent,
+    GetClientComponent,
+    EditClientComponent,
+    AddClientComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
-  providers: [AuthService, PostService, AuthGuard, UserService, TeamService],
+  providers: [AuthService, PostService, AuthGuard,
+    UserService,
+    TeamService,
+    ProjetService,
+    ClientService,
+    HttpClient,
+    CategoryProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

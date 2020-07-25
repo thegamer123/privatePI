@@ -1,0 +1,24 @@
+h1 {
+    padding-top: 67px;
+}
+
+input[type="text"] {
+    width: 220px;
+    height: 24px;
+    border: 1px solid #3255cc;
+    border-right: 10px solid #3255cc;
+}
+
+.ng-dirty.ng-invalid {
+    border-color: red !important;
+}
+
+span {
+    color: red;
+    font-size: 15px;
+}
+
+form {
+  background-color:white;    /* replace this color with your accent color hex code */
+  padding: 2%;
+}

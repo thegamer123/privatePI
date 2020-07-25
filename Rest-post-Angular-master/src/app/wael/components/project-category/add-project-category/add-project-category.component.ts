@@ -1,7 +1,9 @@
-import { CategoryProjectService } from './../../../services/category-project.service';
+
 import { CategoryProject } from './../../../models/categoryProject';
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl , Validators} from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CategoryProjectService } from '../../../service/category-project.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-project-category',
@@ -11,9 +13,9 @@ import { FormGroup, FormControl , Validators} from '@angular/forms';
 export class AddProjectCategoryComponent implements OnInit {
   // attributes
   categoryProject: CategoryProject;
+  errors = [];
 
-
-  constructor(private categoryProjectService: CategoryProjectService) { }
+  constructor(private categoryProjectService: CategoryProjectService, private router: Router) { }
 
   // Form groupe add Category project
   categoryProjectForm: FormGroup = new FormGroup({
@@ -40,8 +42,14 @@ export class AddProjectCategoryComponent implements OnInit {
       name: this.name.value,
       description: this.description.value,
     };
-    this.categoryProjectService.addCategoryProject(this.categoryProject);
-  }
+    this.categoryProjectService.addCategoryProject(this.categoryProject).subscribe((result => {
+
+      this.router.navigate(['/main/projet-category']);
+
+    }), addError => this.errors = addError);
+  };
+
+
 
 
 

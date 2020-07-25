@@ -37,5 +37,27 @@ export class MainComponent implements OnInit {
     this.router.navigate(['/main/team']);
   }
 
+  navigateToAddProjet(e) {
+    this.router.navigate(['/main/new-projet']);
+  }
+
+  navigateToAllProjects(e) {
+    this.router.navigate(['/main/projet']);
+  }
+
+  navigateToAddCategory(e) {
+    this.router.navigate(['/main/new-category']);
+  }
+
+  navigateToAllCategories(e) {
+    this.router.navigate(['/main/projet-category']);
+  }
+  navigateToAddClient(e) {
+    this.router.navigate(['/main/new-client']);
+  }
+
+  navigateToAllClients(e) {
+    this.router.navigate(['/main/clients']);
+  }
 
 }

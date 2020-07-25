@@ -1,7 +1,6 @@
 <form action="" [formGroup]="categoryProjectForm" (ngSubmit)="addCategoryProject()">
   <div class="form-group container">
     <fieldset>
-      <legend>Project category</legend>
       <input type="text"
       [ngClass]="{'is-invalid': categoryProjectForm.invalid && categoryProjectForm.get('name').touched && categoryProjectForm.get('name').errors != null}"
       class="m-3 form-control"

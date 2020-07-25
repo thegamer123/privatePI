@@ -1,6 +1,7 @@
-import { CategoryProjectService } from './../../../services/category-project.service';
+
 import { CategoryProject } from './../../../models/categoryProject';
 import { Component, OnInit } from '@angular/core';
+import { CategoryProjectService } from '../../../service/category-project.service';
 
 @Component({
   selector: 'app-list-project-category',

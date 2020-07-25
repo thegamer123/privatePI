@@ -1,8 +1,9 @@
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { CategoryProjectService } from './../../../services/category-project.service';
+
 import { Component, OnInit } from '@angular/core';
 import { CategoryProject } from '../../../models/categoryProject';
 import { ActivatedRoute } from '@angular/router';
+import { CategoryProjectService } from '../../../service/category-project.service';
 
 @Component({
   selector: 'app-update-project-category',
@@ -27,10 +28,10 @@ export class UpdateProjectCategoryComponent implements OnInit {
   });
 
   ngOnInit() {
-    this.category = {name: '', description: ''};
+    this.category = { name: '', description: '' };
     this.activatedrouter.paramMap.subscribe(result => {
       this.idCategory = Number(result.get('id'));
-      this.categoryProjectService.getCategoryById(this.idCategory).subscribe(res => {this.category = res;});
+      this.categoryProjectService.getCategoryById(this.idCategory).subscribe(res => { this.category = res; });
     });
   }
 
