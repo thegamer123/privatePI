@@ -18,9 +18,24 @@ export class MainComponent implements OnInit {
     this.router.navigate([''], { replaceUrl: true });
   }
 
-  
+
+  navigateToMyProfile(e) {
+    this.router.navigate(['/main/profile']);
+  }
+
+
   navigateToFacture(e) {
     this.router.navigate(['/main/facture']);
   }
+
+  navigateToAddTeam(e) {
+    this.router.navigate(['/main/new-team']);
+  }
+
+
+  navigateToAllTeams(e) {
+    this.router.navigate(['/main/team']);
+  }
+
 
 }

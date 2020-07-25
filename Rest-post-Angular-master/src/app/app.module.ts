@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -20,6 +20,11 @@ import { UserService } from './user.service';
 import { ProfileComponent } from './profile/profile.component';
 import { FactureComponent } from './facture/facture.component';
 import { FactureRowComponent } from './facture-row/facture-row.component';
+import { ListTeamComponent } from './wael/components/team/list-team/list-team.component';
+import { UpdateTeamComponent } from './wael/components/team/update-team/update-team.component';
+import { AddTeamComponent } from './wael/components/team/add-team/add-team.component';
+import { TeamService } from './wael/service/team.service';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -27,12 +32,15 @@ const routes: Routes = [
   { path: 'posts', component: PostComponent, canActivate: [AuthGuard] },
   { path: 'add-post', component: AddPostComponent, canActivate: [AuthGuard] },
   { path: 'edit-post/:id', component: EditPostComponent, canActivate: [AuthGuard] },
-  { path: 'main', component: MainComponent, canActivate: [AuthGuard],children: [
-    { path: 'profile', component: ProfileComponent },
-    { path: 'facture', component: FactureComponent }
-  ]  },
-
-  { path: 'register', component: SignUpComponent },
+  {
+    path: 'main', component: MainComponent, canActivate: [AuthGuard], children: [
+      { path: 'profile', component: ProfileComponent },
+      { path: 'facture', component: FactureComponent },
+      { path: 'team', component: ListTeamComponent },
+      { path: 'team/:id', component: UpdateTeamComponent },
+      { path: 'new-team', component: AddTeamComponent }
+    ]
+  },
 ];
 
 
@@ -50,14 +58,18 @@ const routes: Routes = [
     ProfileComponent,
     FactureComponent,
     FactureRowComponent,
+    ListTeamComponent,
+    UpdateTeamComponent,
+    AddTeamComponent,
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     HttpModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
-  providers: [AuthService, PostService, AuthGuard, UserService],
+  providers: [AuthService, PostService, AuthGuard, UserService, TeamService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

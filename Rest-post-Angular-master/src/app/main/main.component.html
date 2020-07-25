@@ -46,14 +46,22 @@
             <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                 <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#">PROFILE <span class="sr-only">(current)</span></a>
+                        <a class="nav-link page-scroll" (click)="navigateToMyProfile($event)">PROFILE <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link page-scroll" (click)="navigateToFacture($event)">FACTURE</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#">DETAILS</a>
-                    </li>
+
+                    <!-- Dropdown Menu -->
+                    <li class="nav-item dropdown">
+                      <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllTeams($event)" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">TEAMS</a>
+                      <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                          <a class="dropdown-item" (click)="navigateToAddTeam($event)"><span class="item-text">New Team</span></a>
+                          <div class="dropdown-items-divide-hr"></div>
+                          <a class="dropdown-item" (click)="navigateToAllTeams($event)"><span class="item-text">All Teams</span></a>
+
+                      </div>
+                  </li>
 
                     <!-- Dropdown Menu -->
                     <li class="nav-item dropdown">

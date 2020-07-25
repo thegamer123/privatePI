@@ -1,0 +1,37 @@
+<h1>Add Team</h1>
+<!--File upload-->
+<form action="" [formGroup]="teamUpdateForm" (ngSubmit)="updateTeam()">
+  <div class="form-group container">
+    <fieldset>
+      <legend>Project category</legend>
+      <input type="text"
+      [ngClass]="{'is-invalid': teamUpdateForm.invalid && teamUpdateForm.get('name').touched && teamUpdateForm.get('name').errors != null}"
+      class="m-3 form-control"
+      placeholder="Name"
+      [(ngModel)]="teamToUpdate.name"
+      formControlName="name">
+      <input type="text"
+      [ngClass]="{'is-invalid': teamUpdateForm.invalid && teamUpdateForm.get('fieldOfActivity').touched && teamUpdateForm.get('fieldOfActivity').errors != null}"
+      class="m-3 form-control"
+      placeholder="Field"
+      [(ngModel)]="teamToUpdate.field_of_activity"
+      formControlName="fieldOfActivity">
+      <input type="number"
+      [ngClass]="{'is-invalid': teamUpdateForm.invalid && teamUpdateForm.get('velocity').touched && teamUpdateForm.get('velocity').errors != null}"
+      class="m-3 form-control"
+      placeholder="velocity"
+      [(ngModel)]="teamToUpdate.velocity"
+      formControlName="velocity">
+      <div class="custom-file mx-3 mb-2 form-group">
+          <input
+          type="file"
+          class="custom-file-input"
+          [ngClass]="{'is-valid': teamUpdateForm.get('logo').value , 'is-invalid': teamUpdateForm.invalid && teamUpdateForm.get('logo').touched && teamUpdateForm.get('logo').errors != null }"
+          formControlName="logo"
+          (change)="handleFileInput($event.target.files)">
+          <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
+      </div>
+    </fieldset>
+    <button class="btn btn-success" [disabled]="teamUpdateForm.invalid">update Team</button>
+  </div>
+</form>

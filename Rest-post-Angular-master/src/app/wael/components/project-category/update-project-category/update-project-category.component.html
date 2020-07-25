@@ -1,0 +1,20 @@
+<form action="" [formGroup]="categoryProjectForm" (ngSubmit)="updateCategoryProject()">
+  <div class="form-group container">
+    <fieldset>
+      <legend>Project category</legend>
+      <input type="text"
+      [ngClass]="{'is-invalid': categoryProjectForm.invalid && categoryProjectForm.get('name').touched && categoryProjectForm.get('name').errors != null}"
+      class="m-3 form-control"
+      placeholder="Name"
+      [(ngModel)]="category.name"
+      formControlName="name">
+      <input type="text"
+      [ngClass]="{'is-invalid': categoryProjectForm.invalid && categoryProjectForm.get('description').touched && categoryProjectForm.get('description').errors != null}"
+      [(ngModel)]="category.description"
+      class="m-3 form-control"
+      placeholder="description"
+      formControlName="description">
+    </fieldset>
+    <button class="btn btn-success" [disabled]="categoryProjectForm.invalid">Update Project Category</button>
+  </div>
+</form>

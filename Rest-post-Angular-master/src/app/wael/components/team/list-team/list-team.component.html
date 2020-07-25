@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="">
+    <div class="m-1 col-xs-12">
+
+      <ul class="list-group">
+        <li *ngFor="let team of listTeams" class="list-group-item">
+          <div class="d-flex flex-row card">
+            <img class="card-img-top" style="width: 18rem;" src="{{ team.logo }}" alt="Card image cap">
+            <div class="card-body">
+              <h1><i>{{team.name}}</i></h1> <br>
+              <h3><p>{{team.field_of_activity}}</p></h3>
+              <i>Velocity : {{team.velocity}}</i> <br>
+              <button class="btn btn-outline-danger m-1 col-xs-5" (click)="deleteTeam(team.id)">Delete</button>
+              <button class="btn btn-outline-info m-1 col-sm-8" [routerLink]="['/list_team/edit-team', team.id]">Edit</button>
+            </div>
+        </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
