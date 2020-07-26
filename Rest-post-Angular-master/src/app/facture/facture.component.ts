@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as jspdf from 'jspdf';
+import { Facture } from '../Facture';
+import { FactureService } from '../facture.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-facture',
@@ -10,7 +13,7 @@ export class FactureComponent implements OnInit {
 
   email: string;
 
-  constructor() { }
+  constructor(private factureService: FactureService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -24,9 +27,28 @@ export class FactureComponent implements OnInit {
     doc.text(20, 20, 'Do you like that?');
 
     // Save the PDF
-    let blob = doc.output();
-    alert(blob);
+    const _data = doc.output();
+    const blob = new Blob([_data], { type: 'application/pdf' });
+    const url = window.URL.createObjectURL(blob);
 
+    /* var facture = new Facture();
+      facture.name = Date.now() + '.pdf';
+      facture.url = url;
+      facture.data = _data;*/
+
+    var facture = new FormData();
+    facture.append('name', Date.now() + '.pdf');
+    facture.append('url', url);
+    facture.append('data', _data);
+
+
+    this.factureService.addFacture(facture).subscribe(result => {
+      console.log(result);
+      console.log('success add');
+
+    }, error => {
+
+    });
   }
 
 }

@@ -37,6 +37,8 @@ import { CategoryProjectService } from './wael/service/category-project.service'
 import { AddClientComponent } from './marwa/client/add-client/add-client.component';
 import { EditClientComponent } from './marwa/client/edit-client/edit-client.component';
 import { GetClientComponent } from './marwa/client/get-client/get-client.component';
+import { FactureService } from './facture.service';
+import { ListFactureComponent } from './list-facture/list-facture.component';
 
 
 const routes: Routes = [
@@ -60,7 +62,8 @@ const routes: Routes = [
       { path: 'new-category', component: AddProjectCategoryComponent },
       { path: 'clients', component: GetClientComponent },
       { path: 'client/:id', component: EditClientComponent },
-      { path: 'new-client', component: AddClientComponent }
+      { path: 'new-client', component: AddClientComponent },
+      { path: 'allFacture', component: ListFactureComponent }
 
     ]
   },
@@ -93,6 +96,7 @@ const routes: Routes = [
     GetClientComponent,
     EditClientComponent,
     AddClientComponent,
+    ListFactureComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,6 +112,7 @@ const routes: Routes = [
     ProjetService,
     ClientService,
     HttpClient,
+    FactureService,
     CategoryProjectService],
   bootstrap: [AppComponent]
 })

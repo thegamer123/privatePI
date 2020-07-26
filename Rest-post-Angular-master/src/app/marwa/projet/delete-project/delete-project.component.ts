@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PostService} from '../projet.service';
+import { ProjetService } from '../projet.service';
 @Component({
   selector: 'app-delete-project',
   templateUrl: './delete-project.component.html',
@@ -8,7 +8,7 @@ import {PostService} from '../projet.service';
 export class DeleteProjectComponent implements OnInit {
 
 
-  constructor(private _postService: PostService) { }
+  constructor(private _projetService: ProjetService) { }
 
   ngOnInit(): void {
 
@@ -16,8 +16,8 @@ export class DeleteProjectComponent implements OnInit {
 
 
   deleteProject(id) {
-    this._postService.deleteProject(id).subscribe(() =>
-      console.log('Projet deleted'),(err)=>console.log(err));
-   /* this.notifyDelete.emit(id);*/
-}
+    this._projetService.deleteProject(id).subscribe(() =>
+      console.log('Projet deleted'), (err) => console.log(err));
+    /* this.notifyDelete.emit(id);*/
+  }
 }

@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="">
+    <div class="col-xs-3">
+      <ul class="list-group">
+        <li *ngFor="let facture of listFacture;let i= index" class="list-group-item card col-xs-5">
+          <i>{{facture.name}}</i> <br>
+          <button class="btn btn-outline-danger m-1 col-xs-8" (click)="deleteFacture(i)">Delete</button>
+          <button class="btn btn-outline-info m-1 col-xs-8" (click)="openUrlInNewTab(i)">Open in Browser</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

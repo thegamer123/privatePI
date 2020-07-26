@@ -5,6 +5,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Facture;
+use AppBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -45,13 +46,23 @@ class FactureController extends Controller
      * @Route("/new", name="facture_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request,FileUploader $fileUploader)
     {
         $data = $request->getContent();
-        $facture = $this->get('jms_serializer')->deserialize($data, "AppBundle\Entity\Facture", "json");
+        //$facture = $this->get('jms_serializer')->deserialize($data, "AppBundle\Entity\Facture", "json");
+
+        $factureToAdd = new Facture();
+        $brochureFile = $request->get('data');
+        var_dump($brochureFile);
+        //stream_get_contents($stream);
+     /*   $brochureFileName = $fileUploader->upload($stream);
+
+        $factureToAdd->setName($brochureFileName);
+        $factureToAdd->setData($brochureFile);
+        $factureToAdd->setUrl("fsdfsf");
         $em = $this->getDoctrine()->getManager();
-        $em->persist($facture);
-        $em->flush();
+        $em->persist($factureToAdd);
+        $em->flush();*/
         $response=array(
 
             'code'=>0,

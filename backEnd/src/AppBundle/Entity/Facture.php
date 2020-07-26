@@ -46,6 +46,14 @@ class Facture
      */
     private $url;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data", type="blob", nullable=true)
+     */
+    private $data;
+
     /**
      * Set name
      *
@@ -93,5 +101,23 @@ class Facture
     {
         return $this->url;
     }
+
+    /**
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param string $data
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+
 }
 
