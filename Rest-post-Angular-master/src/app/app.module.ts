@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { PostService } from './post.service';
 import { AuthGuard } from './auth.guard';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
 import { MainComponent } from './main/main.component';
