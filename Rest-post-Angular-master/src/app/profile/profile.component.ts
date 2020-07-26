@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../User';
 
 @Component({
@@ -10,7 +10,7 @@ import { User } from '../User';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(private _userService: UserService, private router: Router) { }
+  constructor(private _userService: UserService, private router: Router, private route: ActivatedRoute) { }
   username: string;
   email: string;
   password: string;
@@ -18,21 +18,19 @@ export class ProfileComponent implements OnInit {
   errors = [];
 
   ngOnInit() {
-    this.getUserByUsername("test")
+    this.getUserByUsername(this.route.snapshot.params['username'])
   }
-
 
   getUserByUsername(username) {
 
     console.log(username)
     this._userService.getUserByUserName(username).subscribe((result => {
+
       let json = JSON.parse(JSON.stringify(result))
-
       let user = json.result[0]
-
       this.username = user.username;
       this.email = user.email;
-      this.password = ""; 
+      this.password = "";
       this.password_confirmation = "";
 
     }), addError => this.errors = addError);
