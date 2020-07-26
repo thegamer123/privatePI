@@ -1,3 +1,8 @@
+
+backEnd/.idea/vcs.xml
+backEnd/.idea/workspace.xml
+backEnd/.idea/workspace.xml
+
 # Back end 
 # Cache and logs (Symfony2)
 /app/cache/*
