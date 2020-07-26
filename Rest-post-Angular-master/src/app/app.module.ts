@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,NO_ERRORS_SCHEMA  } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+/*import { ChartsModule } from 'mdbootstrap';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';*/
+import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -37,11 +40,13 @@ import { CategoryProjectService } from './wael/service/category-project.service'
 import { AddClientComponent } from './marwa/client/add-client/add-client.component';
 import { EditClientComponent } from './marwa/client/edit-client/edit-client.component';
 import { GetClientComponent } from './marwa/client/get-client/get-client.component';
+import { PieChartComponent } from './pie-chart/pie-chart.component';
 
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: SignUpComponent },
   { path: 'posts', component: PostComponent, canActivate: [AuthGuard] },
   { path: 'add-post', component: AddPostComponent, canActivate: [AuthGuard] },
   { path: 'edit-post/:id', component: EditPostComponent, canActivate: [AuthGuard] },
@@ -60,7 +65,8 @@ const routes: Routes = [
       { path: 'new-category', component: AddProjectCategoryComponent },
       { path: 'clients', component: GetClientComponent },
       { path: 'client/:id', component: EditClientComponent },
-      { path: 'new-client', component: AddClientComponent }
+      { path: 'new-client', component: AddClientComponent },
+      { path: 'Dashboard', component: PieChartComponent },
 
     ]
   },
@@ -93,6 +99,8 @@ const routes: Routes = [
     GetClientComponent,
     EditClientComponent,
     AddClientComponent,
+    PieChartComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -100,8 +108,8 @@ const routes: Routes = [
     HttpModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
-  ],
+    HttpClientModule,
+  ChartsModule  ],
   providers: [AuthService, PostService, AuthGuard,
     UserService,
     TeamService,
@@ -109,6 +117,8 @@ const routes: Routes = [
     ClientService,
     HttpClient,
     CategoryProjectService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  
+  schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }
