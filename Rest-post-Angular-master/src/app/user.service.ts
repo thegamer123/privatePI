@@ -29,7 +29,7 @@ export class UserService {
     params.set('password', user.password);
     params.set('password_confirmation', user.password_confirmation);
 
-    return this.http.post(this.uri +"createUser", 
+    return this.http.post(this.uri +"createUser",
     params.toString(), {headers : headers}).map(res => res.json()).catch(this.handelError);
   }
 
@@ -41,6 +41,11 @@ export class UserService {
   getUserByUserName(username): Observable<any[]> {
     const headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticationService.token });
     return  this.http.get(this.uri +"username/"+ username , {headers : headers}).map(res => <User[]> res.json() ).catch(this.handelError);
+  }
+
+  getAllUsers() {
+    const headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticationService.token });
+    return  this.http.get(this.uri + 'allUsers' , {headers : headers}).map(res => <User[]> res.json() ).catch(this.handelError);
   }
 
 }
