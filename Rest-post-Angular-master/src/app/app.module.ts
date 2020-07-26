@@ -44,6 +44,7 @@ import { ListFactureComponent } from './list-facture/list-facture.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: SignUpComponent },
   { path: 'posts', component: PostComponent, canActivate: [AuthGuard] },
   { path: 'add-post', component: AddPostComponent, canActivate: [AuthGuard] },
   { path: 'edit-post/:id', component: EditPostComponent, canActivate: [AuthGuard] },

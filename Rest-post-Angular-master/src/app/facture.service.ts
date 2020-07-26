@@ -20,14 +20,15 @@ export class FactureService {
 
   getFacture(): Observable<any[]> {
     const headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticationService.token });
-    return this.http.get(this.uri, { headers: headers }).map(res => <Post[]>res.json()).catch(this.handelError);
+    return this.http.get(this.uri, { headers: headers }).map(res => <Facture[]>res.json()).catch(this.handelError);
   }
 
-  addFacture(facture: FormData) {
+  addFacture(facture: Facture, clientId: number) {
     const headers = new Headers();
     headers.append('content-type', 'application/json');
     headers.append('Authorization', 'Bearer ' + this.authenticationService.token);
-    return this.http.post(this.uri + 'new', facture, { headers: headers }).map(res => res.json()).catch(this.handelError);
+    return this.http.post(this.uri + 'new' + '/' + clientId,
+      JSON.stringify(facture), { headers: headers }).map(res => res.json()).catch(this.handelError);
   }
 
 
