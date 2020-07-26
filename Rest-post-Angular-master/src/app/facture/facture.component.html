@@ -5,12 +5,11 @@
   </div>
   <div class="form-group">
     <label for="exampleFormControlSelect1">Select Client</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+    <select class="form-control" (change)="onChange($event.target.value)">
+      <option class="form-control" *ngFor="let c of client ;let i = index"
+      [value]="i"
+      name="client_id" placeholder="add client" [(ngValue)]="client"
+      >{{c.social_reason}}</option>
     </select>
   </div>
   <div class="form-group">

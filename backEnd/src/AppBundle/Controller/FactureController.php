@@ -9,6 +9,7 @@ use AppBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,44 +44,39 @@ class FactureController extends Controller
     /**
      * Creates a new facture entity.
      *
-     * @Route("/new", name="facture_new")
+     * @Route("/new/{id}", name="facture_new")
      * @Method({"GET", "POST"})
      */
-    public function newAction(Request $request,FileUploader $fileUploader)
+    public function newAction(Request $request)
     {
         $data = $request->getContent();
-        //$facture = $this->get('jms_serializer')->deserialize($data, "AppBundle\Entity\Facture", "json");
-
-        $factureToAdd = new Facture();
-        $brochureFile = $request->get('data');
-        var_dump($brochureFile);
-        //stream_get_contents($stream);
-     /*   $brochureFileName = $fileUploader->upload($stream);
-
-        $factureToAdd->setName($brochureFileName);
-        $factureToAdd->setData($brochureFile);
-        $factureToAdd->setUrl("fsdfsf");
         $em = $this->getDoctrine()->getManager();
-        $em->persist($factureToAdd);
-        $em->flush();*/
-        $response=array(
+        $facture = $this->get('jms_serializer')->deserialize($data, "AppBundle\Entity\Facture", "json");
+        $id = $request->get('id');
+        $client = $em->getRepository('AppBundle:Client')->find($id);
 
-            'code'=>0,
-            'message'=>'success',
-            'errors'=>null,
-            'result'=>'Facture add successfully'
 
-        );
-        return new JsonResponse($response,201);
-    }
+        $facture->setClient($client);
+     $em->persist($facture);
+     $em->flush();
+     $response=array(
 
-    /**
-     * Creates a form to delete a facture entity.
-     *
-     * @param Facture $facture The facture entity
-     *
-     * @return \Symfony\Component\Form\Form The form
-     */
+         'code'=>0,
+         'message'=>'success',
+         'errors'=>null,
+         'result'=>'Facture add successfully'
+
+     );
+     return new JsonResponse($response,201);
+ }
+
+ /**
+  * Creates a form to delete a facture entity.
+  *
+  * @param Facture $facture The facture entity
+  *
+  * @return \Symfony\Component\Form\Form The form
+  */
     private function createDeleteForm(Facture $facture)
     {
         return $this->createFormBuilder()

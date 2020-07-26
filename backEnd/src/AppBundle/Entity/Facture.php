@@ -54,6 +54,13 @@ class Facture
      */
     private $data;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="id")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     */
+    private $client;
+
     /**
      * Set name
      *
@@ -117,6 +124,23 @@ class Facture
     {
         $this->data = $data;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param mixed $client
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+    }
+
 
 
 }
