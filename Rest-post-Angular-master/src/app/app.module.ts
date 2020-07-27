@@ -3,7 +3,7 @@ import { NgModule,NO_ERRORS_SCHEMA  } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 /*import { ChartsModule } from 'mdbootstrap';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';*/
-import { ChartsModule } from 'ng2-charts';
+import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
