@@ -53,8 +53,8 @@ class Projet
     /**
      *
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", cascade={"remove"})
-     * @ORM\JoinColumn(name="client_id",referencedColumnName="id" ,onDelete="CASCADE")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client")
+     * @ORM\JoinColumn(name="client_id",referencedColumnName="id" ,onDelete="SET NULL")
      */
     private $client;
 

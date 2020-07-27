@@ -60,10 +60,6 @@
                 class="sr-only">(current)</span></a>
           </li>
 
-          <li class="nav-item">
-            <a class="nav-link page-scroll" (click)="GoTODash($event)">DASHBOARD <span
-                class="sr-only">(current)</span></a>
-          </li>
 
           <!-- Dropdown Menu -->
           <li class="nav-item dropdown">
@@ -107,6 +103,12 @@
                 <span class="item-text">AllProjects
                 </span>
               </a>
+              <div class="dropdown-items-divide-hr"></div>
+              <a class="dropdown-item" (click)="GoTODash($event)">
+                <span class="item-text">STATUS
+                </span>
+              </a>
+
             </div>
           </li>
 

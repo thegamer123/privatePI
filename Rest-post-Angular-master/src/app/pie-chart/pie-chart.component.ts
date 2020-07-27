@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ProjetService } from '../marwa/projet/projet.service';
+import { ActiveResut } from '../marwa/activeResult';
 @Component({
   selector: 'app-pie-chart',
   templateUrl: './pie-chart.component.html',
@@ -7,17 +9,23 @@ import { Component, OnInit } from '@angular/core';
 export class PieChartComponent implements OnInit {
 
   chartType = 'pie';
+  validProjects = 0;
+  inValidProjects = 0;
+  public active;
+  constructor(private _postService: ProjetService) {
+
+  }
 
   chartDatasets: Array<any> = [
-    { data: [300, 50, 100, 40, 120], label: 'My First dataset' }
+    { data: [0, 0], label: 'Project state' }
   ];
 
-  chartLabels: Array<any> = ['Red', 'Green', 'Yellow', 'Grey', 'Dark Grey'];
+  chartLabels: Array<any> = ['Invalid', 'Valid'];
 
   chartColors: Array<any> = [
     {
-      backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C', '#949FB1', '#4D5360'],
-      hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870', '#A8B3C5', '#616774'],
+      backgroundColor: ['#F7464A', '#46BFBD', '#FDB45C'],
+      hoverBackgroundColor: ['#FF5A5E', '#5AD3D1', '#FFC870'],
       borderWidth: 2,
     }
   ];
@@ -26,7 +34,25 @@ export class PieChartComponent implements OnInit {
     responsive: true
   };
   ngOnInit() {
+
+    this._postService.getProjectStatus().subscribe(data => {
+      console.log(data);
+      this.active = data;
+      this.validProjects = this.active.projetsValidCount;
+      this.inValidProjects = this.active.projetsNotValidCount;
+      this.chartDatasets = [
+        {
+          data: [this.inValidProjects,
+          this.validProjects], label: 'Project state'
+        }
+      ];
+    });
+
   }
+
+
+
+
   public chartClicked(e: any): void { }
   public chartHovered(e: any): void { }
 

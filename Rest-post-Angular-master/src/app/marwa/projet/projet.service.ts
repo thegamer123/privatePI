@@ -10,6 +10,7 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 import { Projet } from './projet';
 import { AuthService } from '../../auth.service';
+import { ActiveResut } from '../activeResult';
 
 @Injectable()
 export class ProjetService {
@@ -67,10 +68,15 @@ export class ProjetService {
   deleteProject(id: any) {
     return this.http.delete(this.uri + '/' + id, { headers: this.headers });
   }
+
   getAllClient(): Observable<Projet[]> | any {
     return this.http.get(this.uri);
+  }
 
 
+  getProjectStatus(){
+    return this.http.get(this.uri + '/activeProjects',
+      { headers: this.headers });
   }
 
 }
