@@ -111,3 +111,6 @@ backEnd/.idea/workspace.xml
 */serveur_flask/env/
 */env
 */__pycache__
+*.pdf
+*.png
+backEnd/.idea/workspace.xml
