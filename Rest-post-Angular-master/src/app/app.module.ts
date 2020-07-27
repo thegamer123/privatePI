@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule,NO_ERRORS_SCHEMA  } from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-/*import { ChartsModule } from 'mdbootstrap';
-import { MDBBootstrapModule } from 'angular-bootstrap-md';*/
+/*import { ChartsModule } from 'mdbootstrap';*/
+//import { ChartsModule } from 'angular-bootstrap-md';
 import { ChartsModule } from 'ng2-charts/ng2-charts';
 
 import { AppComponent } from './app.component';
@@ -112,7 +112,7 @@ const routes: Routes = [
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-  ChartsModule  ],
+    ChartsModule],
   providers: [AuthService, PostService, AuthGuard,
     UserService,
     TeamService,
@@ -122,6 +122,6 @@ const routes: Routes = [
     FactureService,
     CategoryProjectService],
   bootstrap: [AppComponent],
-  schemas: [ NO_ERRORS_SCHEMA ]
+  schemas: [NO_ERRORS_SCHEMA]
 })
 export class AppModule { }
