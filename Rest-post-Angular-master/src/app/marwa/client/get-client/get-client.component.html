@@ -2,10 +2,10 @@
 
 <div *ngFor="let u of listClient; let i= index">
 
-    <fieldset border="1">
+    <fieldset border="1" width:100px>
         <legend>{{u.client}}</legend>
 
-        <table border="2">
+        <table class="center" align-text-bottom border="5">
             <tr>
                 <td>Address</td>
                 <td>{{u.address}}</td>
@@ -26,13 +26,14 @@
                 <td>Phone</td>
                 <td>{{u.phone}}</td>
             </tr>
-            <tr>
-                <td> <button (click)="deleteClient(i)" class="btn btn-danger btn-sm">Supprimer client</button></td>
-                <td> <button (click)="navigateToDetails(i)" class="btn btn-info btn-sm">Modifier client</button></td>
-            </tr>
-
-
         </table>
+
+        <button (click)="deleteClient(i)" class="btn btn-danger btn-sm">Supprimer client</button>
+        <button (click)="navigateToDetails(i)" class="btn btn-info btn-sm">Modifier client</button>
+
+
+
+
     </fieldset>
 
 </div>

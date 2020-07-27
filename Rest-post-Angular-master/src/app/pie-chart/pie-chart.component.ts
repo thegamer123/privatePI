@@ -19,7 +19,7 @@ export class PieChartComponent implements OnInit {
   chartDatasets: Array<any> = [
     { data: [0, 0], label: 'Project state' }
   ];
-
+/*Label du graphe*/
   chartLabels: Array<any> = ['Invalid', 'Valid'];
 
   chartColors: Array<any> = [

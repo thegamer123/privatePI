@@ -1,11 +1,9 @@
-
-
 <div *ngFor="let u of listProject; let i= index">
 
-    <fieldset border="1">
+    <fieldset border="1" width:100px>
         <legend>{{u.project}}</legend>
 
-        <table border="2">
+        <table class="center" align-text-bottom border="5">
             <tr>
                 <td>Name</td>
                 <td>{{u.name}}</td>
@@ -26,13 +24,11 @@
                 <td>Others</td>
                 <td>{{u.others}}</td>
             </tr>
-            <tr>
-                <td> <button (click)="deleteProject(i)" class="btn btn-danger btn-sm">Supprimer projet</button></td>
-                <td> <button (click)="navigateToDetails(i)" class="btn btn-info btn-sm">Modifier projet</button></td>
-            </tr>
-
 
         </table>
+        <button (click)="deleteProject(i)" class="btn btn-danger btn-sm">Supprimer projet</button>
+        <button (click)="navigateToDetails(i)" class="btn btn-info btn-sm">Modifier projet</button>
     </fieldset>
+
 
 </div>

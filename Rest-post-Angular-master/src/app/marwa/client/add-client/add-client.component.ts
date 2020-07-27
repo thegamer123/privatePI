@@ -22,7 +22,7 @@ export class AddClientComponent implements OnInit {
 
     this.ClientForm = new FormGroup({
       address: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      email: new FormControl('', [Validators.required, , Validators.pattern('^[a-zA-Z0-9_.+-]+@+.[a-zA-Z0-9]+$')]),
+      email: new FormControl('', [Validators.required, , Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]),
       general_manager: new FormControl('', [Validators.required, Validators.minLength(3)]),
       phone: new FormControl('', [Validators.required, Validators.minLength(3)]),
       social_reason: new FormControl('', [Validators.required, Validators.minLength(3)]),

@@ -13,6 +13,7 @@ import { Client } from '../../client/client.model';
 
 
 
+
 @Component({
   selector: 'app-add-project',
   templateUrl: './add-project.component.html',
@@ -73,31 +74,35 @@ export class AddProjectComponent implements OnInit {
   }
   errors = [];
   clientSelectedPosition = 0;
+  statusSelected :string;
   cancelAdd(event) {
     this.router.navigate(['/main/projet']);
     // naviation vers list projects
     /*this.router.navigateByUrl('http://localhost:4200/posts');*/
 
   }
+  
 
+  statu:String;
+  onChange2(statusSelected) {
+    this.statusSelected = statusSelected;
+    console.log(statusSelected);
+  }
   onChange(index) {
     this.clientSelectedPosition = index;
   }
+ 
   addProject(name, description, status, deadline, others, client_id) {
     var post = new Projet();
     post.name = name;
     post.description = description;
-    post.status = status;
+    post.status =this.statusSelected;
     post.deadline = deadline;
     post.others = others;
     post.client_id = this.client[this.clientSelectedPosition].id;
-    /*elemen
-
-    /*post.client = this.client.indexOf();
-    /*let indexTodo = this.Post.indexOf(this.client);
-    this.post[indexTodo].completed =true;
-    post.client.*/
+    
     console.table(post);
+    
     this._projetService.addPost(post, this.client[this.clientSelectedPosition].id).subscribe(result => {
       console.log(result);
       this.router.navigate(['/main/projet']);

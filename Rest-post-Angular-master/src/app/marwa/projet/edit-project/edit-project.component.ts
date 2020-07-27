@@ -44,11 +44,16 @@ export class EditProjectComponent implements OnInit {
       this.others = this.project.others;
     });
   }
+  statusSelected:string;
+  onChange2(statusSelected) {
+    this.statusSelected = statusSelected;
+    console.log(statusSelected);
+  }
   editProject(name, description, status, deadline, others) {
     var post = new Projet();
     post.name = name;
     post.description = description;
-    post.status = status;
+    post.status =this.statusSelected;
     post.deadline = deadline;
     post.others = others;
     console.log(post);

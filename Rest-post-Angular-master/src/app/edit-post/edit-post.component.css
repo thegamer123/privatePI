@@ -1,4 +1,21 @@
-h1{
-  padding-top: 67px;
+form {
+    background-color: white;
+    /* replace this color with your accent color hex code */
+    padding: 2%;
+}
 
+fieldset {
+    width: 410px;
+    margin: auto;
+    width: 50%;
+}
+
+legend {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.center {
+    margin-left: auto;
+    margin-right: auto;
 }

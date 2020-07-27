@@ -1,43 +1,30 @@
-
 <form name="ClientForm" [formGroup]=ClientForm (submit)="addClient(address,social_reason,general_manager,email,phone)" class="form-group">
 
     <div class="form-group container">
-        <label>Address:</label><br>
-        <input type="text" class="form-group" placeholder="add address" [(ngModel)]="address" formControlName="address" required minlength="10">
+
+        <input type="text" class="m-3 form-control" placeholder="Address" [(ngModel)]="address" formControlName="address" required minlength="10">
 
         <div *ngIf="ClientForm.get('address').invalid && (ClientForm.get('address').dirty || ClientForm.get('address').touched)" class="alert alert-danger">
             <div *ngIf="ClientForm.get('address').errors.required">Address is required.</div>
             <div *ngIf="ClientForm.get('address').errors.minlength">Address must be at least 4 characters long.</div>
         </div>
-    </div>
 
-
-    <div class="form-group container">
-        <label>Social_reason:</label><br>
-        <input type="text" class="form-group" placeholder="add social_reason" [(ngModel)]="social_reason" formControlName="social_reason">
+        <input type="text" class="m-3 form-control" placeholder="Social_reason" [(ngModel)]="social_reason" formControlName="social_reason">
         <div *ngIf="ClientForm.get('social_reason').invalid && (ClientForm.get('social_reason').dirty || ClientForm.get('social_reason').touched)" class="alert alert-danger">
             <div *ngIf="ClientForm.get('social_reason').errors.required">Social_reason is required.</div>
         </div>
-    </div>
 
-    <div class="form-group container">
-        <label>General_manager:</label><br>
-        <input type="text" class="form-group" placeholder="add general_manager" [(ngModel)]="general_manager" formControlName="general_manager">
+        <input type="text" class="m-3 form-control" placeholder="General_manager" [(ngModel)]="general_manager" formControlName="general_manager">
         <div *ngIf="ClientForm.get('general_manager').invalid && (ClientForm.get('general_manager').dirty || ClientForm.get('general_manager').touched)" class="alert alert-danger">
             <div *ngIf="ClientForm.get('general_manager').errors.required">General_manager is required.</div>
         </div>
-    </div>
 
-    <div class="form-group container">
-        <label>Email:</label><br>
-        <input type="text" class="form-group" placeholder="add email" [(ngModel)]="email" formControlName="email">
+        <input type="email" class="m-3 form-control" placeholder="Email" [(ngModel)]="email" formControlName="email">
         <div *ngIf="ClientForm.get('email').invalid && (ClientForm.get('email').dirty || ClientForm.get('email').touched)" class="alert alert-danger">
             <div *ngIf="ClientForm.get('email').errors.required">Email is required.</div>
         </div>
-    </div>
-    <div class="form-group container">
-        <label>Phone:</label><br>
-        <input type="text" class="form-group" placeholder="add phone" [(ngModel)]="phone" formControlName="phone">
+
+        <input type="text" class="m-3 form-control" placeholder="Phone" [(ngModel)]="phone" formControlName="phone">
         <div *ngIf="ClientForm.get('phone').invalid && (ClientForm.get('phone').dirty || ClientForm.get('phone').touched)" class="alert alert-danger">
             <div *ngIf="ClientForm.get('phone').errors.required">Phone is required.</div>
         </div>
