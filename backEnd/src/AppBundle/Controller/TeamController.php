@@ -33,7 +33,7 @@ class TeamController extends Controller
         $em= $this->getDoctrine()->getManager();
         $em->persist($team);
         $em->flush();
-        return new Response('Team added successfully', 201);
+        return new Response(($team->getId()), 201);
     }
 
 
@@ -72,9 +72,35 @@ class TeamController extends Controller
         return new Response('Team deleted successfully', 200);
     }
 
-    public function uploadImageAction(Request $request) {
-        // Upload file here TODO
-        return null;
-    }
+    public function updateUserTeamIdAction(Request $request) {
+        // Update user Team id
+        // initial data
+        $json =json_decode($request->getContent());
+        $idTeam = $json->{'idTeam'};
+        $usersIds = $json->{'users'};
+        $usersToremove = $json->{'user_to_remove'};
+        var_dump($usersToremove);
+        $doctrine = $this->getDoctrine();
+        $em= $this->getDoctrine()->getManager();
+        $team = $doctrine->getRepository('AppBundle:Team')->find($idTeam);
 
+        // set ids teams to Null in update team
+        foreach ($usersToremove as $userId){
+            $user = $doctrine->getRepository('AppBundle:User')->find($userId);
+            if ($user != NULL) {
+                $user->setTeam(NULL);
+                $em->persist($user);
+                $em->flush();
+            }
+        }
+
+        // for each user in json 'users' add idTeam
+        foreach ($usersIds as $userId){
+         $user = $doctrine->getRepository('AppBundle:User')->find($userId);
+         $user->setTeam($team);
+         $em->persist($user);
+         $em->flush();
+        }
+        return new Response('updated user team' , 200);
+    }
 }

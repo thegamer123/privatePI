@@ -31,5 +31,27 @@ class User extends BaseUser
     {
         return $this->id;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Team", inversedBy="users")
+     * @ORM\JoinColumn( nullable=true,name="team_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $team;
+
+    /**
+     * @return mixed
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+
+    /**
+     * @param mixed $team 
+     */
+    public function setTeam($team)
+    {
+        $this->team = $team;
+    }
 }
 

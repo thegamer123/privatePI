@@ -1,11 +1,12 @@
-team_POST_IMAGE:
-    path:     /upload
-    defaults: { _controller: AppBundle:Team:uploadImage }
 
 team_GET:
     path:     /
     defaults: { _controller: AppBundle:Team:getAllTeam }
     methods : [GET]
+
+team_update_user_TeamId:
+    path:     /updateUserTeamId
+    defaults: { _controller: AppBundle:Team:updateUserTeamId }
 
 team_POST:
     path:     /new
