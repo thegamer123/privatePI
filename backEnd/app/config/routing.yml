@@ -76,3 +76,7 @@ factureUpload:
 task:
     resource: "@AppBundle/Resources/config/routing_task.yml"
     prefix:   /task
+
+activity:
+    resource: "@AppBundle/Resources/config/routing_activity.yml"
+    prefix:   /activity

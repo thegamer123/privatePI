@@ -1,22 +1,22 @@
 
-team_GET:
+task_GET:
     path:     /
     defaults: { _controller: AppBundle:Task:getAllTask }
     methods : [GET]
 
-team_POST:
+task_POST:
     path:     /new
     defaults: { _controller: AppBundle:Task:newTask }
 
-team_GET_ById:
+task_GET_ById:
     path:     /{id}
     defaults: { _controller: AppBundle:Task:getTaskbyId }
 
-team_PUT_ById:
+task_PUT_ById:
     path:     /{id}/edit
     defaults: { _controller: AppBundle:Task:editTask }
 
 
-team_DELETE_ById:
+task_DELETE_ById:
     path:     /{id}/delete
     defaults: { _controller: AppBundle:Task:deleteTask }
