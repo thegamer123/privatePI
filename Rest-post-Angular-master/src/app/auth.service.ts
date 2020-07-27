@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers, Response, URLSearchParams} from '@angular/http';
+import { Http, Headers, Response, URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
@@ -14,8 +14,6 @@ export class AuthService {
     this.token = currentUser && currentUser.token;
   }
 
-
-
   login(username: string, password: string): Observable<boolean> {
     let headers = new Headers();
     headers.append('content-type', 'application/x-www-form-urlencoded');
@@ -24,7 +22,7 @@ export class AuthService {
     body.set('password', password);
 
 
-    return this.http.post('http://127.0.0.1:8000/api/login_check', body ,{headers : headers} )
+    return this.http.post('http://127.0.0.1:8000/api/login_check', body, { headers: headers })
       .map((response: Response) => {
         // login successful if there's a jwt token in the response
         const token = response.json() && response.json().token;
