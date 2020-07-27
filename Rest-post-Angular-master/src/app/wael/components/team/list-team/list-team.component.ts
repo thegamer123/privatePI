@@ -1,3 +1,5 @@
+import { UserService } from './../../../../user.service';
+import { User } from './../../../../User';
 
 import { Team } from './../../../models/team';
 import { Component, OnInit } from '@angular/core';
@@ -12,8 +14,11 @@ export class ListTeamComponent implements OnInit {
 
   // attributes
   listTeams: Team[];
+  users: any[] = [];
 
-  constructor(private teamService: TeamService) { }
+  constructor(
+    private teamService: TeamService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.loadPage();
@@ -21,13 +26,23 @@ export class ListTeamComponent implements OnInit {
 
   loadPage (): void {
     this.loadListTeam ();
+    this.loadUsers();
   }
 
+  // load list team
   loadListTeam (): void {
     this.teamService.getAllTeam().subscribe((res) => {
       console.log(res);
       this.listTeams = res;
     });
+  }
+
+  // load list users
+  loadUsers () {
+    this.userService.getAllUsers().subscribe(res => {
+      this.users = res.result;
+      console.log(this.users);
+     });
   }
 
   // Delete Team

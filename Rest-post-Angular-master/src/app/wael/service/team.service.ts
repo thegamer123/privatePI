@@ -28,23 +28,15 @@ export class TeamService {
   }
 
   // add Team
-  addTeam(team: Team) {
+  addTeam(team: Team): Observable<any>{
     const headers = new Headers({ 'Content-Type': 'application/json; charset = utf-8;'});
-    return this.http.post(this.url + 'new', JSON.stringify(team)).subscribe(data => {
-        console.log('team added');
-      }, error => {
-        console.log(error);
-    });
+    return this.http.post(this.url + 'new', JSON.stringify(team));
   }
 
   // edit Team
-  updateTeam(team: Team) {
+  updateTeam(team: Team): Observable<any> {
     const headers = new Headers({ 'Content-Type': 'application/json; charset = utf-8;'});
-    return this.http.put(this.url + team.id + '/edit', JSON.stringify(team)).subscribe(data => {
-      console.log('team updated');
-      }, error => {
-      console.log(error);
-    });
+    return this.http.put(this.url + team.id + '/edit', JSON.stringify(team));
   }
 
   // delete Team
@@ -58,6 +50,12 @@ export class TeamService {
   // upload photo
   uploadPhoto(photo: FormData): Observable<Response> | null {
     return this.http.post(this.url_upload , photo);
+  }
+
+  updateUserTeam(obj): Observable<any>{
+    const headers = new Headers({ 'Content-Type': 'application/json; charset = utf-8;'});
+    headers.append('Authorization', 'Bearer ' + this.authenticationService.token);
+    return this.http.post(this.url + 'updateUserTeamId' , JSON.stringify(obj));
   }
 
 

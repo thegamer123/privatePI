@@ -2,7 +2,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { Component, OnInit } from '@angular/core';
 import { CategoryProject } from '../../../models/categoryProject';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryProjectService } from '../../../service/category-project.service';
 
 @Component({
@@ -18,7 +18,8 @@ export class UpdateProjectCategoryComponent implements OnInit {
 
   constructor(
     private activatedrouter: ActivatedRoute,
-    private categoryProjectService: CategoryProjectService
+    private categoryProjectService: CategoryProjectService,
+    private router: Router
   ) { }
 
   // Form groupe
@@ -45,7 +46,12 @@ export class UpdateProjectCategoryComponent implements OnInit {
   }
 
   updateCategoryProject() {
-    this.categoryProjectService.updateCategoryProject(this.category);
+    this.categoryProjectService.updateCategoryProject(this.category).subscribe(data => {
+      console.log('category updated');
+      this.router.navigate(['/main/projet-category']);
+    }, error => {
+      console.log(error);
+    });;
   }
 
 }

@@ -1,9 +1,6 @@
-<h1>Add Team</h1>
-<!--File upload-->
 <form action="" [formGroup]="teamForm" (ngSubmit)="addTeam()">
   <div class="form-group container">
     <fieldset>
-      <legend>Project category</legend>
       <input type="text"
       [ngClass]="{'is-invalid': teamForm.invalid && teamForm.get('name').touched && teamForm.get('name').errors != null}"
       class="m-3 form-control"
@@ -19,6 +16,7 @@
       class="m-3 form-control"
       placeholder="velocity"
       formControlName="velocity">
+      <!--File upload-->
       <div class="custom-file mx-3 mb-2 form-group">
           <input
           type="file"
@@ -28,7 +26,15 @@
           (change)="handleFileInput($event.target.files)">
           <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
       </div>
+
+      <!--list user-->
+      <div *ngFor="let user of listUsers; let i=index">
+        <label>
+          <input type="checkbox" [value]=user.id (change)="onCheckboxChange($event)" />
+          {{user.username}}
+        </label>
+      </div>
     </fieldset>
-    <button class="btn btn-success" [disabled]="teamForm.invalid">Add Team</button>
+    <button class="btn btn-success" [routerLink]="['/team']" [disabled]="teamForm.invalid">Add Team</button>
   </div>
 </form>

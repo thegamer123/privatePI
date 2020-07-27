@@ -10,8 +10,17 @@
               <h1><i>{{team.name}}</i></h1> <br>
               <h3><p>{{team.field_of_activity}}</p></h3>
               <i>Velocity : {{team.velocity}}</i> <br>
+              <!--List user-->
+              <div>
+                <h4>Members :</h4>
+                <div *ngFor="let user of users">
+                  <div *ngIf="user.team">
+                    <p *ngIf="user.team.id == team.id">{{user.username}}</p>
+                  </div>
+                </div>
+              </div>
               <button class="btn btn-outline-danger m-1 col-xs-5" (click)="deleteTeam(team.id)">Delete</button>
-              <button class="btn btn-outline-info m-1 col-sm-8" [routerLink]="['/list_team/edit-team', team.id]">Edit</button>
+              <button class="btn btn-outline-info m-1 col-sm-8" [routerLink]="['/main/team', team.id]">Edit</button>
             </div>
         </div>
         </li>

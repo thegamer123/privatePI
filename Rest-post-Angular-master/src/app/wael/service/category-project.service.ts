@@ -41,13 +41,9 @@ export class CategoryProjectService {
 
 
   // edit category  project
-  updateCategoryProject(category: CategoryProject) {
+  updateCategoryProject(category: CategoryProject): Observable<any> {
     const headers = new Headers();
-    return this.http.put(this.url + category.id + '/edit', JSON.stringify(category)).subscribe(data => {
-      console.log('category updated');
-    }, error => {
-      console.log(error);
-    });
+    return this.http.put(this.url + category.id + '/edit', JSON.stringify(category));
   }
 
   // delete category project
