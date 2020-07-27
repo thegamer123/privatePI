@@ -5,6 +5,7 @@ import { FactureService } from '../facture.service';
 import { Router } from '@angular/router';
 import { ClientService } from '../marwa/client/client.service';
 import { Client } from '../marwa/client/client.model';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'app-facture',
@@ -48,31 +49,42 @@ export class FactureComponent implements OnInit {
 
     var type = 'multipart/form-data; charset=utf-8; boundary=' + Math.random().toString().substr(2)
     var formdata = new FormData();
-    formdata.append('my_file',_data);
+    formdata.append('my_file', _data);
 
     var facture = new Facture();
-    facture.data = _data;
 
-    this.factureService.uploadFacture(formdata).subscribe(result => {
+    var file = new File([blob], Date.now() + '.pdf', { lastModified: Date.now() });
+    console.log(file.name)
+    this.uploadPDF(file, file.name).subscribe(res => {
+      const path_logo = res._body;
+      facture.name = path_logo.split('/')[path_logo.split('/').length - 1]
+      facture.url = path_logo
 
-      facture.url = result.toString();
       this.factureService.addFacture(facture, this.client[this.clientSelectedPosition].id).subscribe(result => {
         console.log(result);
         console.log('success add');
-
+        this.router.navigate(['/main/allFacture']);
       }, error => {
-
+        console.log('error add');
       });
-    }, error => {
 
+
+    }, erreur_upload => {
+      console.log(erreur_upload);
+      console.log('Erreur upload pdf');
     });
-
 
   }
   onChange(index) {
     this.clientSelectedPosition = index;
   }
 
+
+  uploadPDF(file, name): Observable<any> {
+    const photo: FormData = new FormData();
+    photo.append('file', file, name);
+    return this.factureService.uploadPDF(photo);
+  }
 
 
 }

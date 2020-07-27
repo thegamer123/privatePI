@@ -25,7 +25,8 @@ export class LoginComponent implements OnInit {
   login(e) {
 
     e.preventDefault();
-
+    console.log(this.username)
+    console.log(this.password)
     this.authenticationService.login(this.username, this.password)
       .subscribe(result => {
 
