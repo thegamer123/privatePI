@@ -59,7 +59,7 @@ const routes: Routes = [
       { path: 'projet/:id', component: EditProjectComponent },
       { path: 'new-projet', component: AddProjectComponent },
       { path: 'projet-category', component: ListProjectCategoryComponent },
-      { path: 'category/:id', component: UpdateProjectCategoryComponent },
+      { path: 'category-project/:id', component: UpdateProjectCategoryComponent },
       { path: 'new-category', component: AddProjectCategoryComponent },
       { path: 'clients', component: GetClientComponent },
       { path: 'client/:id', component: EditClientComponent },

@@ -7,7 +7,7 @@
           <i>Description</i> :
           <p>{{category.description}}</p>
           <button class="btn btn-outline-danger m-1 col-xs-8" (click)="deleteCategory(category.id)">Delete</button>
-          <button class="btn btn-outline-info m-1 col-xs-8" [routerLink]="['/list_category/edit-category', category.id]">Edit</button>
+          <button class="btn btn-outline-info m-1 col-xs-8" [routerLink]="['/main/category-project/', category.id]">Edit</button>
         </li>
       </ul>
     </div>
