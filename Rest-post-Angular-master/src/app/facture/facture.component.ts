@@ -15,6 +15,7 @@ import { Observable } from 'rxjs/Observable';
 export class FactureComponent implements OnInit {
 
   email: string;
+  description: string;
 
   constructor(private factureService: FactureService, private router: Router, private clientService: ClientService) { }
 
@@ -36,11 +37,18 @@ export class FactureComponent implements OnInit {
 
   generatePdf(data) {
 
+
     var doc = new jspdf();
-    doc.text(20, 20, 'Hello world!');
-    doc.text(20, 30, 'This is client-side Javascript, pumping out a PDF.');
-    doc.addPage();
-    doc.text(20, 20, 'Do you like that?');
+    var pageHeight = doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
+    var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+    doc.text('Client Bill', doc.internal.pageSize.width / 2, 20, null, null, 'center');
+    doc.text(20, 30, 'Email :' + this.email);
+    doc.text(20, 40, 'Client : ' + this.client[this.clientSelectedPosition].social_reason);
+    doc.text(20, 50, 'General Manager : ' + this.client[this.clientSelectedPosition].general_manager);
+    doc.text(20, 60, 'Phone : ' + this.client[this.clientSelectedPosition].phone);
+    doc.rect(20, 70, pageWidth - 40, pageHeight - 100, 'S');
+    doc.text(30, 80, 'Description :' + this.description);
+
 
     // Save the PDF
     const _data = doc.output('blob');
