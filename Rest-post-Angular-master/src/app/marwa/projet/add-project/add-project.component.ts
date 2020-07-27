@@ -102,7 +102,8 @@ export class AddProjectComponent implements OnInit {
       console.log(result);
       this.router.navigate(['/main/projet']);
     }, error => {
-      console.log(error);
+      console.log(error);      this.router.navigate(['/main/projet']);
+
     });
 
   }
