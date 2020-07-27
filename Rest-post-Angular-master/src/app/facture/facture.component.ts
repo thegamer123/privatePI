@@ -6,18 +6,23 @@ import { Router } from '@angular/router';
 import { ClientService } from '../marwa/client/client.service';
 import { Client } from '../marwa/client/client.model';
 import { Observable } from 'rxjs/Observable';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-facture',
   templateUrl: './facture.component.html',
-  styleUrls: ['./facture.component.css']
+  styleUrls: ['./facture.component.css'],
+  providers: [DatePipe]
 })
 export class FactureComponent implements OnInit {
 
   email: string;
   description: string;
 
-  constructor(private factureService: FactureService, private router: Router, private clientService: ClientService) { }
+  constructor(private factureService: FactureService,
+    private router: Router,
+    private clientService: ClientService,
+    private datePipe: DatePipe) { }
 
   ngOnInit() {
 
@@ -37,50 +42,55 @@ export class FactureComponent implements OnInit {
 
   generatePdf(data) {
 
+    if (this.email !== undefined && this.description !== undefined) {
 
-    var doc = new jspdf();
-    var pageHeight = doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
-    var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
-    doc.text('Client Bill', doc.internal.pageSize.width / 2, 20, null, null, 'center');
-    doc.text(20, 30, 'Email :' + this.email);
-    doc.text(20, 40, 'Client : ' + this.client[this.clientSelectedPosition].social_reason);
-    doc.text(20, 50, 'General Manager : ' + this.client[this.clientSelectedPosition].general_manager);
-    doc.text(20, 60, 'Phone : ' + this.client[this.clientSelectedPosition].phone);
-    doc.rect(20, 70, pageWidth - 40, pageHeight - 100, 'S');
-    doc.text(30, 80, 'Description :' + this.description);
+      var doc = new jspdf();
+      var pageHeight = doc.internal.pageSize.height || doc.internal.pageSize.getHeight();
+      var pageWidth = doc.internal.pageSize.width || doc.internal.pageSize.getWidth();
+      doc.text('Client Bill', doc.internal.pageSize.width / 2, 20, null, null, 'center');
+      doc.text(20, 30, 'Email :' + this.email);
+      doc.text(20, 40, 'Client : ' + this.client[this.clientSelectedPosition].social_reason);
+      doc.text(20, 50, 'General Manager : ' + this.client[this.clientSelectedPosition].general_manager);
+      doc.text(20, 60, 'Phone : ' + this.client[this.clientSelectedPosition].phone);
+      doc.text(20, 70, 'Date : ' + this.datePipe.transform(new Date(), 'yyyy-MM-dd'));
+      doc.rect(20, 80, pageWidth - 40, pageHeight - 100, 'S');
+      doc.text(30, 90, 'Description(Details) :');
+      doc.text(30, 100, this.description);
 
 
-    // Save the PDF
-    const _data = doc.output('blob');
-    const blob = new Blob([_data], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(blob);
+      // Save the PDF
+      const _data = doc.output('blob');
+      const blob = new Blob([_data], { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
 
-    var type = 'multipart/form-data; charset=utf-8; boundary=' + Math.random().toString().substr(2)
-    var formdata = new FormData();
-    formdata.append('my_file', _data);
+      var type = 'multipart/form-data; charset=utf-8; boundary=' + Math.random().toString().substr(2)
+      var formdata = new FormData();
+      formdata.append('my_file', _data);
 
-    var facture = new Facture();
+      var facture = new Facture();
 
-    var file = new File([blob], Date.now() + '.pdf', { lastModified: Date.now() });
-    console.log(file.name)
-    this.uploadPDF(file, file.name).subscribe(res => {
-      const path_logo = res._body;
-      facture.name = path_logo.split('/')[path_logo.split('/').length - 1]
-      facture.url = path_logo
+      var file = new File([blob], Date.now() + '.pdf', { lastModified: Date.now() });
+      console.log(file.name)
+      this.uploadPDF(file, file.name).subscribe(res => {
+        const path_logo = res._body;
+        facture.name = path_logo.split('/')[path_logo.split('/').length - 1]
+        facture.url = path_logo
 
-      this.factureService.addFacture(facture, this.client[this.clientSelectedPosition].id).subscribe(result => {
-        console.log(result);
-        console.log('success add');
-        this.router.navigate(['/main/allFacture']);
-      }, error => {
-        console.log('error add');
+        this.factureService.addFacture(facture, this.client[this.clientSelectedPosition].id).subscribe(result => {
+          console.log(result);
+          console.log('success add');
+          this.router.navigate(['/main/allFacture']);
+        }, error => {
+          console.log('error add');
+        });
+
+
+      }, erreur_upload => {
+        console.log(erreur_upload);
+        console.log('Erreur upload pdf');
       });
 
-
-    }, erreur_upload => {
-      console.log(erreur_upload);
-      console.log('Erreur upload pdf');
-    });
+    }
 
   }
   onChange(index) {

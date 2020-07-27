@@ -1,0 +1,22 @@
+
+task_GET:
+    path:     /
+    defaults: { _controller: AppBundle:Task:getAllTask }
+    methods : [GET]
+
+task_POST:
+    path:     /new
+    defaults: { _controller: AppBundle:Task:newTask }
+
+task_GET_ById:
+    path:     /{id}
+    defaults: { _controller: AppBundle:Task:getTaskbyId }
+
+task_PUT_ById:
+    path:     /{id}/edit
+    defaults: { _controller: AppBundle:Task:editTask }
+
+
+task_DELETE_ById:
+    path:     /{id}/delete
+    defaults: { _controller: AppBundle:Task:deleteTask }

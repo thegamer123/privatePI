@@ -9,6 +9,7 @@ import { ActiveResut } from '../marwa/activeResult';
 export class PieChartComponent implements OnInit {
 
   chartType = 'pie';
+  chartTypeV = 'bar';
   validProjects = 0;
   inValidProjects = 0;
   public active;
