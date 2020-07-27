@@ -23,7 +23,7 @@ class ProjetController extends Controller
     /**
      * Creates a new projet entity.
      *
-     * @Route("/new", name="projet_new")
+     * @Route("/new/{id}", name="projet_new")
      * @Method({"GET", "POST"})
      */
     /*Add Data*/
@@ -31,14 +31,20 @@ class ProjetController extends Controller
 {
 //get content of data sent by ARC
     $data = $request->getContent();
+        $em= $this->getDoctrine()->getManager();
 
 //deserialize the data
     $projet = $this->get('jms_serializer')->deserialize($data, "AppBundle\Entity\Projet", "json");
+        $id = $request->get('id');
+        $client = $em->getRepository('AppBundle:Client')->find($id);
+
+        $projet->setClient($client);
+
 // added my data in data base
-    $em= $this->getDoctrine()->getManager();
     $em->persist($projet);
     $em->flush();
     return new Response('project added successfully', 201);
+
 //you can use line number 37 or  line number 39
 
 }
