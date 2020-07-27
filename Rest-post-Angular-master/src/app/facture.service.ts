@@ -45,4 +45,16 @@ export class FactureService {
 
   }
 
+  uploadFacture(file: FormData): Observable<any[]> {
+    const headers = new Headers();
+
+    headers.append('Accept', 'application/json');
+    headers.append("Content-type", "multipart/form-data; charset=utf-8; boundary=" + Math.random().toString().substr(2));
+    return this.http.post(this.uri + 'upload',
+      file, { headers: headers }).map(res => res.json())
+      .map((data: { status: boolean, file_id: any }) => data.file_id)
+      .catch(this.handelError);
+  }
+
+
 }

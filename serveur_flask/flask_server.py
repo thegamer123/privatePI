@@ -13,8 +13,8 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 @app.route('/upload', methods = ['GET', 'POST'])
 def upload():
     # URL_SERVER = request.base_url
-    if request.method == 'POST':
         # file = request.files[]
+    if request.method == 'POST':
         file = request.files['file']
         file_name = f'{get_random_string(50)}.png'
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))

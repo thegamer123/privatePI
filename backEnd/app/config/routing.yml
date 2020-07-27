@@ -59,7 +59,7 @@ facture_list:
     methods:  [GET]
 
 facture_create:
-    path:     /facture/new
+    path:     /facture/new/{id}
     defaults: { _controller: AppBundle\Controller\FactureController::newAction }
     methods:  [POST]
 
@@ -68,5 +68,8 @@ factureById:
     defaults: { _controller: AppBundle\Controller\FactureController::getFactureById }
     methods:  [GET]
 
-
+factureUpload:
+    path:     /facture/upload
+    defaults: { _controller: AppBundle\Controller\FactureController::uploadAction }
+    methods:  [POST]
 
