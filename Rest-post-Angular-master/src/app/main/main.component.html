@@ -145,6 +145,36 @@
             </div>
           </li>
 
+          <!-- Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllTasks($event)" id="navbarDropdown"
+              role="button" aria-haspopup="true" aria-expanded="false">TASKS</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" (click)="navigateToNewTask($event)"><span class="item-text">New
+                  Task</span></a>
+              <div class="dropdown-items-divide-hr"></div>
+              <a class="dropdown-item" (click)="navigateToAllTasks($event)"><span class="item-text">All
+                  Tasks</span></a>
+
+            </div>
+          </li>
+
+
+          <!-- Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllActivities($event)" id="navbarDropdown"
+              role="button" aria-haspopup="true" aria-expanded="false">ACTIVITY</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" (click)="navigateToNewActivity($event)"><span class="item-text">New
+                  Activity</span></a>
+              <div class="dropdown-items-divide-hr"></div>
+              <a class="dropdown-item" (click)="navigateToAllActivities($event)"><span class="item-text">All
+                  Activities</span></a>
+
+            </div>
+          </li>
+
+
         </ul>
         <span class="nav-item">
           <a class="btn-outline-sm" (click)="backToHome($event)">Logout</a>

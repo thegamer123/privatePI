@@ -43,6 +43,12 @@ import { GetClientComponent } from './marwa/client/get-client/get-client.compone
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { FactureService } from './facture.service';
 import { ListFactureComponent } from './list-facture/list-facture.component';
+import { AddActivityComponent } from './ramzi/activity/add-activity/add-activity.component';
+import { EditActivityComponent } from './ramzi/activity/edit-activity/edit-activity.component';
+import { ListActivityComponent } from './ramzi/activity/list-activity/list-activity.component';
+import { AddTaskComponent } from './ramzi/task/add-task/add-task.component';
+import { EditTaskComponent } from './ramzi/task/edit-task/edit-task.component';
+import { ListTaskComponent } from './ramzi/task/list-task/list-task.component';
 
 
 const routes: Routes = [
@@ -69,7 +75,13 @@ const routes: Routes = [
       { path: 'client/:id', component: EditClientComponent },
       { path: 'new-client', component: AddClientComponent },
       { path: 'Dashboard', component: PieChartComponent },
-      { path: 'allFacture', component: ListFactureComponent }
+      { path: 'allFacture', component: ListFactureComponent },
+      { path: 'activity', component: ListActivityComponent },
+      { path: 'activity/:id', component: EditActivityComponent },
+      { path: 'new-activity', component: AddActivityComponent },
+      { path: 'task', component: ListTaskComponent },
+      { path: 'task/:id', component: EditTaskComponent },
+      { path: 'new-task', component: AddTaskComponent }
 
     ]
   },
@@ -104,6 +116,12 @@ const routes: Routes = [
     AddClientComponent,
     PieChartComponent,
     ListFactureComponent,
+    AddActivityComponent,
+    EditActivityComponent,
+    ListActivityComponent,
+    AddTaskComponent,
+    EditTaskComponent,
+    ListTaskComponent,
   ],
   imports: [
     BrowserModule,
