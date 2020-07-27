@@ -73,3 +73,6 @@ factureUpload:
     defaults: { _controller: AppBundle\Controller\FactureController::uploadAction }
     methods:  [POST]
 
+task:
+    resource: "@AppBundle/Resources/config/routing_task.yml"
+    prefix:   /task
