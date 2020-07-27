@@ -24,7 +24,7 @@ def upload_logo():
         return str(f'{URL_SERVER}uploads/logos/{file_name}')
 
 
-# upload logos
+# upload pdfs
 @app.route('/upload_pdf', methods = ['POST'])
 def upload_pdf():
     # URL_SERVER = request.base_url
