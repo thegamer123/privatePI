@@ -98,11 +98,11 @@ export class AddProjectComponent implements OnInit {
     this.post[indexTodo].completed =true;
     post.client.*/
     console.table(post);
-    this._projetService.addPost(post).subscribe(result => {
+    this._projetService.addPost(post, this.client[this.clientSelectedPosition].id).subscribe(result => {
       console.log(result);
       this.router.navigate(['/main/projet']);
     }, error => {
-      console.log(error);      this.router.navigate(['/main/projet']);
+      console.log(error); this.router.navigate(['/main/projet']);
 
     });
 

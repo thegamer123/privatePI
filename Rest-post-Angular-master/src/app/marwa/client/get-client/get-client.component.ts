@@ -31,9 +31,9 @@ export class GetClientComponent implements OnInit {
 
   navigateToDetails(index){
     // naviation vers edit-client/id
-    this.router.navigate(['edit-client', this.listClient[index].id]);}
-  
- 
+    this.router.navigate(['main/client', this.listClient[index].id]);}
+
+
   deleteClient(index) {
     this.clientService.deleteClient(this.listClient[index].id).subscribe(() =>
      { console.log('Client deleted')

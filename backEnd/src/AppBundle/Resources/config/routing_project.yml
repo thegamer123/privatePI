@@ -14,7 +14,7 @@ project_GET_ById:
 project_PUT_ById:
   path:     /{id}
   defaults: { _controller: AppBundle:Projet:edit }
-  methods : [POST]
+  methods : [PUT]
 
 project_DELETE_ById:
   path:     /{id}

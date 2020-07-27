@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class EditClientComponent implements OnInit {
 
   public id: number;
-  address: string ;
+  address: string;
   social_reason: string;
   general_manager: string;
   email: string;
@@ -43,7 +43,7 @@ export class EditClientComponent implements OnInit {
       this.phone = this.client.phone;
     });
   }
-  editClient(address, social_reason, general_manager, email,phone) {
+  editClient(address, social_reason, general_manager, email, phone) {
     var client = new Client();
     client.address = address;
     client.social_reason = social_reason;
@@ -56,9 +56,10 @@ export class EditClientComponent implements OnInit {
     /*console.table(post);*/
     this.clientService.updateClient(client, this.id).subscribe(result => {
       console.log(result);
-      this.router.navigate(['/clients']);
+      this.router.navigate(['main/clients']);
     }, error => {
       console.log(error);
+      this.router.navigate(['main/clients']);
     });
 
 

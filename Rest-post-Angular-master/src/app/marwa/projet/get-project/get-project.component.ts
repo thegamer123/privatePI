@@ -32,7 +32,7 @@ export class GetProjectComponent implements OnInit {
 
   navigateToDetails(index) {
     // naviation vers edit-projet/id
-    this.router.navigate(['edit-project', this.listProject[index].id]);
+    this.router.navigate(['main/projet', this.listProject[index].id]);
   }
 
   deleteProject(index) {

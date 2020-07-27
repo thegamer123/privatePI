@@ -32,11 +32,12 @@ export class ProjetService {
 
   }
   getProjectById(id: any) {
-    return this.http.get(this.uri + '/' + id, { headers: this.headers });
+    return this.http.get(this.uri + '/get/' + id, { headers: this.headers });
   }
-  addPost(post: Projet) {
+
+  addPost(post: Projet, id) {
     console.log(JSON.stringify(post));
-    return this.http.post<Projet>(this.uri + '/new', post, { headers: this.headers });
+    return this.http.post<Projet>(this.uri + '/new/' + id, post, { headers: this.headers });
 
   }
 

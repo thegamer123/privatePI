@@ -57,7 +57,7 @@ export class EditProjectComponent implements OnInit {
     /*console.table(post);*/
     this._postService.updatePost(post, this.id).subscribe(result => {
       console.log(result);
-      /* this.router.navigate(['/posts']);*/
+      this.router.navigate(['main/projet']);
     }, error => {
       console.log(error);
     });

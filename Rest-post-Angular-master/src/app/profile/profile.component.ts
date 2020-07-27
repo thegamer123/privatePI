@@ -18,7 +18,9 @@ export class ProfileComponent implements OnInit {
   errors = [];
 
   ngOnInit() {
-    this.getUserByUsername(this.route.snapshot.params['username'])
+    //this.getUserByUsername(this.route.snapshot.params['username'])
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    this.getUserByUsername(currentUser.username)
   }
 
   getUserByUsername(username) {
