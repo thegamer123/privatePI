@@ -1,13 +1,14 @@
 <?php
 
 
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Facture;
+use AppBundle\Service\FileUploader;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -42,25 +43,30 @@ class FactureController extends Controller
     /**
      * Creates a new facture entity.
      *
-     * @Route("/new", name="facture_new")
+     * @Route("/new/{id}", name="facture_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
     {
         $data = $request->getContent();
-        $facture = $this->get('jms_serializer')->deserialize($data, "AppBundle\Entity\Facture", "json");
         $em = $this->getDoctrine()->getManager();
+        $facture = $this->get('jms_serializer')->deserialize($data, "AppBundle\Entity\Facture", "json");
+        $id = $request->get('id');
+        $client = $em->getRepository('AppBundle:Client')->find($id);
+
+
+        $facture->setClient($client);
         $em->persist($facture);
         $em->flush();
-        $response=array(
+        $response = array(
 
-            'code'=>0,
-            'message'=>'success',
-            'errors'=>null,
-            'result'=>'Facture add successfully'
+            'code' => 0,
+            'message' => 'success',
+            'errors' => null,
+            'result' => 'Facture add successfully'
 
         );
-        return new JsonResponse($response,201);
+        return new JsonResponse($response, 201);
     }
 
     /**
@@ -132,31 +138,55 @@ class FactureController extends Controller
 
         $facture = $this->getDoctrine()->getRepository('AppBundle:Facture')->find($id);
 
-        if (empty($facture)){
-            $response=array(
-                'code'=>1,
-                'message'=>'post not found',
-                'error'=>null,
-                'result'=>null
+        if (empty($facture)) {
+            $response = array(
+                'code' => 1,
+                'message' => 'post not found',
+                'error' => null,
+                'result' => null
             );
 
             return new JsonResponse($response, Response::HTTP_NOT_FOUND);
         }
 
-        $data=$this->get('jms_serializer')->serialize($facture,'json');
+        $data = $this->get('jms_serializer')->serialize($facture, 'json');
 
 
-        $response=array(
+        $response = array(
 
-            'code'=>0,
-            'message'=>'success',
-            'errors'=>null,
-            'result'=>json_decode($data)
+            'code' => 0,
+            'message' => 'success',
+            'errors' => null,
+            'result' => json_decode($data)
 
         );
-        return new JsonResponse($response,200);
+        return new JsonResponse($response, 200);
 
     }
 
+    /**
+     * @Route("/upload")
+     * Method("POST")
+     */
+    public function uploadAction(Request $request)
+    {
+        try {
+            $file = $request->files->get('my_file');
+            var_dump($file);
+            $fileName = md5(uniqid()) . '.' . 'pdf';
+            $file->move($this->container->getParameter('facture_directory'), $fileName);
+
+            $array = array(
+                'status' => 1,
+                'file_id' => '/uploads/facture/'.$fileName
+            );
+            $response = new JsonResponse ($array, 200);
+            return $response;
+        } catch (Exception $e) {
+            $array = array('status' => 0);
+            $response = new JsonResponse($array, 400);
+            return $response;
+        }
+    }
 
 }

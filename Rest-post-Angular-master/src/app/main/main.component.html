@@ -56,82 +56,88 @@
                     <li class="nav-item">
                         <a class="nav-link page-scroll" (click)="navigateToMyProfile($event)">PROFILE <span
                 class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" (click)="navigateToFacture($event)">FACTURE</a>
-                    </li>
+          </li>
 
-                    <!-- Dropdown Menu -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllTeams($event)" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">TEAMS</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" (click)="navigateToAddTeam($event)"><span class="item-text">New Team</span></a>
-                            <div class="dropdown-items-divide-hr"></div>
-                            <a class="dropdown-item" (click)="navigateToAllTeams($event)"><span class="item-text">All Teams</span></a>
+          <!-- Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllFacture($event)" id="navbarDropdown"
+              role="button" aria-haspopup="true" aria-expanded="false">FACTURE</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" (click)="navigateToFacture($event)"><span class="item-text">New
+                  Facture</span></a>
+              <div class="dropdown-items-divide-hr"></div>
+              <a class="dropdown-item" (click)="navigateToAllFacture($event)"><span class="item-text">All
+                  Facture</span></a>
 
-                        </div>
-                    </li>
-
-
-                    <!-- Dropdown Menu -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllTeams($event)" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">PROJECTS</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" (click)="navigateToAddProjet($event)"><span class="item-text">New
-                  Project</span></a>
-                            <div class="dropdown-items-divide-hr"></div>
-                            <a class="dropdown-item" (click)="navigateToAllProjects($event)"><span class="item-text">All
-                  Projects</span></a>
-                        </div>
-
-                    </li>
+            </div>
+          </li>
 
 
-                    <!-- Dropdown Menu -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllTeams($event)" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">PROJECTS CATEGORIES</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" (click)="navigateToAddCategory($event)"><span class="item-text">New
-                    Category</span></a>
-                            <div class="dropdown-items-divide-hr"></div>
-                            <a class="dropdown-item" (click)="navigateToAllCategories($event)"><span class="item-text">All
-                    Categories</span></a>
+          <!-- Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllTeams($event)" id="navbarDropdown"
+              role="button" aria-haspopup="true" aria-expanded="false">TEAMS</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" (click)="navigateToAddTeam($event)"><span class="item-text">New Team</span></a>
+              <div class="dropdown-items-divide-hr"></div>
+              <a class="dropdown-item" (click)="navigateToAllTeams($event)"><span class="item-text">All Teams</span></a>
 
-                        </div>
-                    </li>
+            </div>
+          </li>
 
-                    <!-- Dropdown Menu -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllTeams($event)" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">CLIENTS</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" (click)="navigateToAddClient($event)"><span class="item-text">New Client</span></a>
-                            <div class="dropdown-items-divide-hr"></div>
-                            <a class="dropdown-item" (click)="navigateToAllClients($event)"><span class="item-text">All
-                  Clients</span></a>
 
-                        </div>
-                    </li>
+          <!-- Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllTeams($event)" id="navbarDropdown"
+              role="button" aria-haspopup="true" aria-expanded="false">PROJECTS</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" (click)="navigateToAddProjet($event)">
+                <span class="item-text">New Project
+                </span>
+              </a>
+              <div class="dropdown-items-divide-hr"></div>
+              <a class="dropdown-item" (click)="navigateToAllProjects($event)">
+                <span class="item-text">AllProjects
+                </span>
+              </a>
+            </div>
+          </li>
 
-                    <!-- Dropdown Menu -->
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle page-scroll" href="index.html#video" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">VIDEO</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#"><span class="item-text">ARTICLE DETAILS</span></a>
-                            <div class="dropdown-items-divide-hr"></div>
-                            <a class="dropdown-item" href="#"><span class="item-text">TERMS CONDITIONS</span></a>
-                            <div class="dropdown-items-divide-hr"></div>
-                            <a class="dropdown-item" href="#"><span class="item-text">PRIVACY POLICY</span></a>
-                        </div>
-                    </li>
-                    <!-- end of dropdown menu -->
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" (click)="GoTODash($event)">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link page-scroll" href="#">PRICING</a>
-                    </li>
-                </ul>
-                <span class="nav-item">
+
+          <!-- Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllTeams($event)" id="navbarDropdown"
+              role="button" aria-haspopup="true" aria-expanded="false">PROJECTS CATEGORIES</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" (click)="navigateToAddCategory($event)">
+                <span class="item-text">New Category
+                </span></a>
+              <div class="dropdown-items-divide-hr"></div>
+              <a class="dropdown-item" (click)="navigateToAllCategories($event)">
+                <span class="item-text">All Categories
+                </span>
+              </a>
+            </div>
+          </li>
+
+          <!-- Dropdown Menu -->
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle page-scroll" (click)="navigateToAllTeams($event)" id="navbarDropdown"
+              role="button" aria-haspopup="true" aria-expanded="false">CLIENTS</a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" (click)="navigateToAddClient($event)">
+                <span class="item-text">New Client
+                </span>
+              </a>
+              <div class="dropdown-items-divide-hr"></div>
+              <a class="dropdown-item" (click)="navigateToAllClients($event)">
+                <span class="item-text">All Clients
+                </span></a>
+            </div>
+          </li>
+
+        </ul>
+        <span class="nav-item">
           <a class="btn-outline-sm" (click)="backToHome($event)">Logout</a>
         </span>
             </div>
@@ -140,7 +146,6 @@
     </nav>
     <!-- end of navbar -->
     <!-- end of navigation -->
-
 
     <!-- Header -->
     <header id="header" class="ex-2-header">

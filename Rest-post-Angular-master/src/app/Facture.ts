@@ -1,7 +1,7 @@
 export class Facture {
-
-  constructor(public id, public name: string, public url: string) {
-
-  }
-
+  id: number;
+  name: string;
+  url: string;
+  data: Blob;
+  client_id: Number;
 }

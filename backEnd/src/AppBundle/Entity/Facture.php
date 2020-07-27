@@ -46,6 +46,21 @@ class Facture
      */
     private $url;
 
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data", type="blob", nullable=true)
+     */
+    private $data;
+
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Client", inversedBy="id")
+     * @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     */
+    private $client;
+
     /**
      * Set name
      *
@@ -93,5 +108,40 @@ class Facture
     {
         return $this->url;
     }
+
+    /**
+     * @return string
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     * @param string $data
+     */
+    public function setData($data)
+    {
+        $this->data = $data;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param mixed $client
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+    }
+
+
+
 }
 

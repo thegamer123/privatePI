@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
+import { UserService } from './../../../../user.service';
 import { Observable, Subscribable } from 'rxjs/Observable';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { Team } from './../../../models/team';
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
@@ -16,18 +18,30 @@ export class AddTeamComponent implements OnInit {
   // attributes
   team: Team;
   fileToupload: File = null;
+  listUsers = [];
+  selectedUser: Number[] = [];
 
-  constructor(private teamService: TeamService) { }
+
+  constructor(
+    private teamService: TeamService,
+    private fb: FormBuilder,
+    private userService: UserService,
+    private router: Router) { }
 
   // form groupe add Team
   teamForm: FormGroup = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     fieldOfActivity: new FormControl('', [Validators.required, Validators.minLength(2)]),
     velocity: new FormControl('', [Validators.required]),
-    logo: new FormControl('',  [Validators.required])
+    logo: new FormControl('',  [Validators.required]),
+    checkedUser : new FormArray([], Validators.required)
   });
 
   ngOnInit() {
+    this.userService.getAllUsers().subscribe(res=> {
+      console.log(res.result);
+      this.listUsers = res.result;
+    });
   }
 
   // getters
@@ -58,7 +72,26 @@ export class AddTeamComponent implements OnInit {
         logo: path_logo
       };
       // save team to database
-      this.teamService.addTeam(this.team)
+      this.teamService.addTeam(this.team).subscribe(response => {
+        console.log('team added');
+        const idTeam = response._body;
+        if (Number(idTeam)) {
+          const obj = {
+            'idTeam' : idTeam,
+            'users' : this.selectedUser,
+            'user_to_remove': []
+          }
+          // for each user we should add the id Team
+          this.teamService.updateUserTeam(obj).subscribe( res => {
+            console.log(res);
+            this.router.navigate(['/main/team']);
+          } , error => {
+            console.log('erreur update user team');
+          });
+        }
+      }, error => {
+        console.log(error);
+    });
     }, erreur_upload => {
       console.log(erreur_upload);
       console.log('Erreur upload photo');
@@ -76,4 +109,25 @@ export class AddTeamComponent implements OnInit {
     this.fileToupload = files.item(0);
   }
 
+  // check box handler
+  onCheckboxChange(e) {
+    const checkArray: FormArray = this.teamForm.get('checkedUser') as FormArray;
+
+    if (e.target.checked) {
+      checkArray.push(new FormControl(e.target.value));
+      this.selectedUser = checkArray.value;
+      console.log(this.selectedUser);
+    } else {
+      let i = 0;
+      checkArray.controls.forEach((item: FormControl) => {
+        if (item.value == e.target.value) {
+          checkArray.removeAt(i);
+          this.selectedUser = checkArray.value;
+          console.log(this.selectedUser);
+          return;
+        }
+        i++;
+      });
+    }
+  }
 }

@@ -63,4 +63,8 @@ export class MainComponent implements OnInit {
   GoTODash(e){
     this.router.navigate(['/main/Dashboard']);
   }
+  navigateToAllFacture(e) {
+    this.router.navigate(['/main/allFacture']);
+  }
+
 }

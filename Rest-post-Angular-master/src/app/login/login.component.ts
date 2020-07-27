@@ -30,13 +30,15 @@ export class LoginComponent implements OnInit {
       .subscribe(result => {
 
         console.log(result);
-        this.router.navigate(['/main/profile'], { replaceUrl: true });
+        this.router.navigate(['/main/profile', {
+          username: this.username
+        }], { replaceUrl: true });
 
       }, loginError => this.error = loginError.message + ' : verify  your username or password !  ');
   }
 
   backToHome(e) {
-        this.router.navigate(['']);
+    this.router.navigate(['']);
   }
 
 }

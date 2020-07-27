@@ -10,14 +10,18 @@ export class DeleteProjectComponent implements OnInit {
 
   constructor(private _projectService: ProjetService) { }
 
+
   ngOnInit(): void {
 
   }
 
 
   deleteProject(id) {
-    this._projectService.deleteProject(id).subscribe(() =>
-      console.log('Projet deleted'),(err)=>console.log(err));
+    this._projectService.deleteProject(id).subscribe(() => {
+      console.log('Projet deleted');
+    }, err => {
+      console.log(err);
+    });
    /* this.notifyDelete.emit(id);*/
-}
+  }
 }

@@ -14,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { AuthService } from './auth.service';
 import { PostService } from './post.service';
 import { AuthGuard } from './auth.guard';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, ActivatedRoute } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { HomeComponent } from './home/home.component';
 import { MainComponent } from './main/main.component';
@@ -41,6 +41,8 @@ import { AddClientComponent } from './marwa/client/add-client/add-client.compone
 import { EditClientComponent } from './marwa/client/edit-client/edit-client.component';
 import { GetClientComponent } from './marwa/client/get-client/get-client.component';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { FactureService } from './facture.service';
+import { ListFactureComponent } from './list-facture/list-facture.component';
 
 
 const routes: Routes = [
@@ -61,12 +63,13 @@ const routes: Routes = [
       { path: 'projet/:id', component: EditProjectComponent },
       { path: 'new-projet', component: AddProjectComponent },
       { path: 'projet-category', component: ListProjectCategoryComponent },
-      { path: 'category/:id', component: UpdateProjectCategoryComponent },
+      { path: 'category-project/:id', component: UpdateProjectCategoryComponent },
       { path: 'new-category', component: AddProjectCategoryComponent },
       { path: 'clients', component: GetClientComponent },
       { path: 'client/:id', component: EditClientComponent },
       { path: 'new-client', component: AddClientComponent },
       { path: 'Dashboard', component: PieChartComponent },
+      { path: 'allFacture', component: ListFactureComponent }
 
     ]
   },
@@ -100,7 +103,7 @@ const routes: Routes = [
     EditClientComponent,
     AddClientComponent,
     PieChartComponent,
-    
+    ListFactureComponent,
   ],
   imports: [
     BrowserModule,
@@ -116,9 +119,9 @@ const routes: Routes = [
     ProjetService,
     ClientService,
     HttpClient,
+    FactureService,
     CategoryProjectService],
   bootstrap: [AppComponent],
-  
   schemas: [ NO_ERRORS_SCHEMA ]
 })
 export class AppModule { }
