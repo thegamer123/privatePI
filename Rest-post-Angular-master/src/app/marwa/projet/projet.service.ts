@@ -32,30 +32,23 @@ export class ProjetService {
 
   }
   getProjectById(id: any) {
-    return this.http.get(this.uri + '/' + id, { headers: this.headers });
+    return this.http.get(this.uri + '/get/' + id, { headers: this.headers });
   }
+
   addPost(post: Projet) {
     console.log(JSON.stringify(post));
     return this.http.post<Projet>(this.uri + '/new', post, { headers: this.headers });
 
   }
 
-
-
   updatePost(post: Projet, id) {
-    return this.http.put<Projet>(this.uri + '/' + id, post, { headers: this.headers });
+    return this.http.put<Projet>(this.uri + '/edit/' + id, post, { headers: this.headers });
   }
 
 
   deletePost(id: any) {
-    return this.http.delete(this.uri + '/' + id, { headers: this.headers });
+    return this.http.delete(this.uri + '/delete/' + id, { headers: this.headers });
   }
-
-
-  private handelError(error: Response) {
-    return Observable.throw(error.json().errors || 'server error');
-  }
-
 
   // get all category project
   getAllProject(): Observable<Projet[]> | any {
@@ -64,12 +57,19 @@ export class ProjetService {
 
   }
   deleteProject(id: any) {
-    return this.http.delete(this.uri + '/' + id, { headers: this.headers });
+    return this.http.delete(this.uri + '/delete/' + id, { headers: this.headers });
   }
+
   getAllClient(): Observable<Projet[]> | any {
     return this.http.get(this.uri);
-
-
   }
+
+  // handler Erreur
+  private handelError(error: Response) {
+    return Observable.throw(error.json().errors || 'server error');
+  }
+
+
+
 
 }

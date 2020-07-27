@@ -12,12 +12,12 @@ project_GET_ById:
   defaults: { _controller: AppBundle:Projet:showByid }
 
 project_PUT_ById:
-  path:     /{id}
+  path:     /edit/{id}
   defaults: { _controller: AppBundle:Projet:edit }
   methods : [POST]
 
 project_DELETE_ById:
-  path:     /{id}
+  path:     /delete/{id}
   defaults: { _controller: AppBundle:Projet:delete }
 
 project_Status:
