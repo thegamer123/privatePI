@@ -1,0 +1,21 @@
+activity_GET:
+    path:     /
+    defaults: { _controller: AppBundle:Activity:getAllActivity }
+    methods : [GET]
+
+activity_POST:
+    path:     /new
+    defaults: { _controller: AppBundle:Activity:newActivity }
+
+activity_GET_ById:
+    path:     /{id}
+    defaults: { _controller: AppBundle:Activity:getActivitybyId }
+
+activity_PUT_ById:
+    path:     /{id}/edit
+    defaults: { _controller: AppBundle:Activity:editActivity }
+
+
+activity_DELETE_ById:
+    path:     /{id}/delete
+    defaults: { _controller: AppBundle:Activity:deleteActivity }
