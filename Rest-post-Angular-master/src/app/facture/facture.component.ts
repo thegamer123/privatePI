@@ -42,24 +42,32 @@ export class FactureComponent implements OnInit {
     doc.text(20, 20, 'Do you like that?');
 
     // Save the PDF
-    const _data = doc.output();
+    const _data = doc.output('blob');
     const blob = new Blob([_data], { type: 'application/pdf' });
     const url = window.URL.createObjectURL(blob);
 
+    var type = 'multipart/form-data; charset=utf-8; boundary=' + Math.random().toString().substr(2)
+    var formdata = new FormData();
+    formdata.append('my_file',_data);
 
     var facture = new Facture();
-    facture.name = Date.now() + '.pdf';
-    facture.url = url;
     facture.data = _data;
 
+    this.factureService.uploadFacture(formdata).subscribe(result => {
 
-    this.factureService.addFacture(facture,this.client[this.clientSelectedPosition].id).subscribe(result => {
-      console.log(result);
-      console.log('success add');
+      facture.url = result.toString();
+      this.factureService.addFacture(facture, this.client[this.clientSelectedPosition].id).subscribe(result => {
+        console.log(result);
+        console.log('success add');
 
+      }, error => {
+
+      });
     }, error => {
 
     });
+
+
   }
   onChange(index) {
     this.clientSelectedPosition = index;

@@ -1,7 +1,6 @@
 <?php
 
 
-
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Facture;
@@ -57,26 +56,26 @@ class FactureController extends Controller
 
 
         $facture->setClient($client);
-     $em->persist($facture);
-     $em->flush();
-     $response=array(
+        $em->persist($facture);
+        $em->flush();
+        $response = array(
 
-         'code'=>0,
-         'message'=>'success',
-         'errors'=>null,
-         'result'=>'Facture add successfully'
+            'code' => 0,
+            'message' => 'success',
+            'errors' => null,
+            'result' => 'Facture add successfully'
 
-     );
-     return new JsonResponse($response,201);
- }
+        );
+        return new JsonResponse($response, 201);
+    }
 
- /**
-  * Creates a form to delete a facture entity.
-  *
-  * @param Facture $facture The facture entity
-  *
-  * @return \Symfony\Component\Form\Form The form
-  */
+    /**
+     * Creates a form to delete a facture entity.
+     *
+     * @param Facture $facture The facture entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
     private function createDeleteForm(Facture $facture)
     {
         return $this->createFormBuilder()
@@ -139,31 +138,55 @@ class FactureController extends Controller
 
         $facture = $this->getDoctrine()->getRepository('AppBundle:Facture')->find($id);
 
-        if (empty($facture)){
-            $response=array(
-                'code'=>1,
-                'message'=>'post not found',
-                'error'=>null,
-                'result'=>null
+        if (empty($facture)) {
+            $response = array(
+                'code' => 1,
+                'message' => 'post not found',
+                'error' => null,
+                'result' => null
             );
 
             return new JsonResponse($response, Response::HTTP_NOT_FOUND);
         }
 
-        $data=$this->get('jms_serializer')->serialize($facture,'json');
+        $data = $this->get('jms_serializer')->serialize($facture, 'json');
 
 
-        $response=array(
+        $response = array(
 
-            'code'=>0,
-            'message'=>'success',
-            'errors'=>null,
-            'result'=>json_decode($data)
+            'code' => 0,
+            'message' => 'success',
+            'errors' => null,
+            'result' => json_decode($data)
 
         );
-        return new JsonResponse($response,200);
+        return new JsonResponse($response, 200);
 
     }
 
+    /**
+     * @Route("/upload")
+     * Method("POST")
+     */
+    public function uploadAction(Request $request)
+    {
+        try {
+            $file = $request->files->get('my_file');
+            var_dump($file);
+            $fileName = md5(uniqid()) . '.' . 'pdf';
+            $file->move($this->container->getParameter('facture_directory'), $fileName);
+
+            $array = array(
+                'status' => 1,
+                'file_id' => '/uploads/facture/'.$fileName
+            );
+            $response = new JsonResponse ($array, 200);
+            return $response;
+        } catch (Exception $e) {
+            $array = array('status' => 0);
+            $response = new JsonResponse($array, 400);
+            return $response;
+        }
+    }
 
 }

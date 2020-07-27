@@ -16,8 +16,8 @@ app.config['UPLOAD_FOLDER_PDFS'] = UPLOAD_FOLDER_PDFS
 @app.route('/upload', methods = ['POST'])
 def upload_logo():
     # URL_SERVER = request.base_url
-    if request.method == 'POST':
         # file = request.files[]
+    if request.method == 'POST':
         file = request.files['file']
         file_name = f'{get_random_string(50)}.png'
         file.save(os.path.join(app.config['UPLOAD_FOLDER_LOGOS'], file_name))
