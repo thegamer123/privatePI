@@ -123,5 +123,29 @@ class Task
     {
         return $this->duration;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="tasks")
+     * @ORM\JoinColumn( nullable=true,name="user_id", referencedColumnName="id", onDelete="SET NULL")
+     */
+    private $user;
+
+        /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user 
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
+
 }
 
