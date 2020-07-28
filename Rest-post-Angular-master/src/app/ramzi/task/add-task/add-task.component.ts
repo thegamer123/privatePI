@@ -60,7 +60,7 @@ export class AddTaskComponent implements OnInit {
     this.task = {
       title: this.title.value,
       description: this.description.value,
-      id_user: this.user.value
+      userId: this.user.value
     };
     console.log(this.task);
 

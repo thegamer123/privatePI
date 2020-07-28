@@ -1,3 +1,28 @@
-<p>
-  edit-task works!
-</p>
+<form action="" [formGroup]="taskForm" (ngSubmit)="updateActivity()">
+  <div class="form-group container">
+    <fieldset>
+      <input type="text"
+      [ngClass]="{'is-invalid': taskForm.invalid && taskForm.get('title').touched && taskForm.get('title').errors != null}"
+      class="m-3 form-control"
+      placeholder="Title"
+      [(ngModel)]="task.title"
+      formControlName="title">
+      <input type="text"
+      [ngClass]="{'is-invalid': taskForm.invalid && taskForm.get('description').touched && taskForm.get('description').errors != null}"
+      class="m-3 form-control"
+      placeholder="description"
+      [(ngModel)]="task.description"
+      formControlName="description">
+      <input type="number"
+      [ngClass]="{'is-invalid': taskForm.invalid && taskForm.get('duration').touched && taskForm.get('duration').errors != null}"
+      class="m-3 form-control"
+      placeholder="Duration"
+      [(ngModel)]="task.duration"
+      formControlName="duration">
+      <select class="m-3 form-control" formControlName="user">
+        <option *ngFor="let user of users" [value]=user.id >{{ user.username }}</option>
+      </select>
+    </fieldset>
+    <button class="btn btn-success" [disabled]="taskForm.invalid">Add Task</button>
+  </div>
+</form>

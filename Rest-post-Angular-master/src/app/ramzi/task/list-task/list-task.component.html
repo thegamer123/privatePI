@@ -5,10 +5,12 @@
         <li *ngFor="let task of listTask" class="list-group-item card col-xs-5">
           <i>{{task.title}}</i> <br>
           <i>Duration</i> :
-          <p>{{task.duration}}</p>
-          <i>Responsable </i> :
+          <p>{{task.duration}} jours</p>
+          <i *ngIf="task.user">Responsable  :</i>
           <div *ngFor="let user of users">
-            <p *ngIf="user.id === task.user_id">{{ user.username }}</p>
+            <div *ngIf="task.user">
+              <div *ngIf="user.id === task.user.id">{{ user.username }}</div>
+            </div>
           </div>
           <button class="btn btn-outline-danger m-1 col-xs-8" (click)="deleteTask(task.id)">Delete</button>
           <button class="btn btn-outline-info m-1 col-xs-8" [routerLink]="['/main/task/', task.id]">Edit</button>

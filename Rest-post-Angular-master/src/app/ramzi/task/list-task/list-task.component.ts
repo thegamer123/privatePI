@@ -11,7 +11,7 @@ import { Component, OnInit } from '@angular/core';
 export class ListTaskComponent implements OnInit {
 
   // attributes
-  listTask: Task [];
+  listTask: any [];
   users = [];
 
   constructor(
@@ -30,6 +30,7 @@ export class ListTaskComponent implements OnInit {
   loadListTask() {
       // get all task
       this.taskService.getAllTask().subscribe(data => {
+        console.log(data);
         this.listTask = data;
     });
   }

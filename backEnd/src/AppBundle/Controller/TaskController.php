@@ -27,8 +27,13 @@ class TaskController extends Controller
     public function newTaskAction(Request $request) {
         
         $data = $request->getContent();
+        $json =json_decode($data);
+        $idUser = $json->{'user_id'};
+        $doctrine = $this->getDoctrine();
+        $user = $doctrine->getRepository('AppBundle:User')->find($idUser);
         //deserialize the data
         $task = $this->get('jms_serializer')->deserialize($data, "AppBundle\Entity\Task", "json");
+        $task->setUser($user);
         // add data to DB
         $em= $this->getDoctrine()->getManager();
         $em->persist($task);
@@ -51,10 +56,14 @@ class TaskController extends Controller
         $manager = $doctrine->getManager();
         $task_to_update = $doctrine->getRepository('AppBundle:Task')->find($id);
         $data = $request->getContent();
+        $json =json_decode($data);
+        $idUser = $json->{'userId'};
+        $user = $doctrine->getRepository('AppBundle:User')->find($idUser);
         $task = $this->get('jms_serializer')->deserialize($data, "AppBundle\Entity\Task", "json");
         $task_to_update->setTitle($task->getTitle());
         $task_to_update->setdescription($task->getdescription());
-        $task_to_update->setDuration($task->getDuration()); 
+        $task_to_update->setDuration($task->getDuration());
+        $task_to_update->setUser($user);
         $manager->persist($task_to_update);
         $manager->flush();
         return new Response('Task updated successfully', 200);
