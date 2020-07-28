@@ -21,11 +21,11 @@ export class AddClientComponent implements OnInit {
   constructor(private clientService: ClientService, private router: Router) {
 
     this.ClientForm = new FormGroup({
-      address: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      address: new FormControl('', [Validators.required, Validators.minLength(4)]),
       email: new FormControl('', [Validators.required, , Validators.pattern('[A-Za-z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}')]),
-      general_manager: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      phone: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      social_reason: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      general_manager: new FormControl('', [Validators.required, Validators.minLength(4)]),
+      phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
+      social_reason: new FormControl('', [Validators.required, Validators.minLength(4)]),
 
     });
   }
