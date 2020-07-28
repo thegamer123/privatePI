@@ -22,7 +22,7 @@ export class AddActivityComponent implements OnInit {
     private userService : UserService,
     private router: Router) {
   }
-  // Form groupe add Category project
+  // Form groupe edit activity
   activityForm: FormGroup = new FormGroup({
     status: new FormControl('', [Validators.required, Validators.minLength(3)]),
     date: new FormControl('', [Validators.required]),

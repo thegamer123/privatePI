@@ -21,7 +21,7 @@ export class ActivityService {
   }
 
   // get Activity by id
-  getCategoryById(id: number): Observable<Activity> | null {
+  getActivityById(id: number): Observable<Activity> | null {
     const headers = new Headers({ 'Authorization': 'Bearer ' + this.authenticationService.token });
     return this.http.get(this.url + id, { headers: headers }).map(res => <Activity[]>res.json()).catch(this.handelError);
   }
