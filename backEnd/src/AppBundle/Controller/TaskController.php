@@ -28,7 +28,7 @@ class TaskController extends Controller
         
         $data = $request->getContent();
         $json =json_decode($data);
-        $idUser = $json->{'user_id'};
+        $idUser = $json->{'userId'};
         $doctrine = $this->getDoctrine();
         $user = $doctrine->getRepository('AppBundle:User')->find($idUser);
         //deserialize the data

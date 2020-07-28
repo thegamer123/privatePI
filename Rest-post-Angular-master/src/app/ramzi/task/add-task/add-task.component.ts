@@ -62,6 +62,7 @@ export class AddTaskComponent implements OnInit {
       description: this.description.value,
       userId: this.user.value
     };
+    console.log(this.task)
     console.log(this.task);
 
     this.taskService.addTask(this.task).subscribe((result => {
