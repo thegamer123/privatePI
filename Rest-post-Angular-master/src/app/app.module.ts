@@ -1,3 +1,4 @@
+import { TaskService } from './ramzi/services/task.service';
 import { ActivityService } from './ramzi/services/activity.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
@@ -140,7 +141,8 @@ const routes: Routes = [
     HttpClient,
     FactureService,
     CategoryProjectService,
-    ActivityService],
+    ActivityService,
+    TaskService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
