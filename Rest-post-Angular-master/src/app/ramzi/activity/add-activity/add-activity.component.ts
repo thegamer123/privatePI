@@ -38,6 +38,10 @@ export class AddActivityComponent implements OnInit {
     return this.activityForm.get('date');
   }
 
+  get user() {
+    return this.activityForm.get('user');
+  }
+
   ngOnInit() {
     this.userService.getAllUsers().subscribe(res=> {
       console.log(res.result);
@@ -45,7 +49,7 @@ export class AddActivityComponent implements OnInit {
     });
   }
 
-  // Add Category project function
+  // Add activity function
   addActivity() {
     // init object with data from form
     this.activity = {
