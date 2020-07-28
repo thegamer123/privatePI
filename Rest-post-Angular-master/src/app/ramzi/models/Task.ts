@@ -3,5 +3,5 @@ export interface Task {
   title: string;
   duration?: number;
   description?: string;
-  id_user: number;
+  user_id: number;
 }
