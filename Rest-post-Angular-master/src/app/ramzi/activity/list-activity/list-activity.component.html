@@ -1,3 +1,15 @@
-<p>
-  list-activity works!
-</p>
+<div class="container">
+  <div class="">
+    <div class="col-xs-3">
+      <ul class="list-group">
+        <li *ngFor="let activity of listActivity" class="list-group-item card col-xs-5">
+          <i>{{activity.status}}</i> <br>
+          <i>Date</i> :
+          <p>{{activity.date}}</p>
+          <button class="btn btn-outline-danger m-1 col-xs-8" (click)="deleteActivity(activity.id)">Delete</button>
+          <button class="btn btn-outline-info m-1 col-xs-8" [routerLink]="['/main/activity/', activity.id]">Edit</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
