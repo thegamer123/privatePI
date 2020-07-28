@@ -1,3 +1,20 @@
-<p>
-  add-activity works!
-</p>
+<form action="" [formGroup]="activityForm" (ngSubmit)="addActivity()">
+  <div class="form-group container">
+    <fieldset>
+      <input type="text"
+      [ngClass]="{'is-invalid': activityForm.invalid && activityForm.get('status').touched && activityForm.get('status').errors != null}"
+      class="m-3 form-control"
+      placeholder="Status"
+      formControlName="status">
+      <input type="text"
+      [ngClass]="{'is-invalid': activityForm.invalid && activityForm.get('date').touched && activityForm.get('date').errors != null}"
+      class="m-3 form-control"
+      placeholder="Date"
+      formControlName="date">
+      <select class="m-3 form-control" formControlName="user">
+        <option *ngFor="let user of users"  >{{ user.username }}</option>
+      </select>
+    </fieldset>
+    <button class="btn btn-success" [disabled]="activityForm.invalid">Add activity</button>
+  </div>
+</form>

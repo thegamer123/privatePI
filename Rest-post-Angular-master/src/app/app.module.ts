@@ -1,3 +1,4 @@
+import { ActivityService } from './ramzi/services/activity.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -138,7 +139,8 @@ const routes: Routes = [
     ClientService,
     HttpClient,
     FactureService,
-    CategoryProjectService],
+    CategoryProjectService,
+    ActivityService],
   bootstrap: [AppComponent],
   schemas: [NO_ERRORS_SCHEMA]
 })
