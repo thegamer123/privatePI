@@ -21,7 +21,7 @@
             <select class="m-3 form-control" (change)="onChange2($event.target.value)" name="status" [(ngValue)]="status">
             <option  disabled>Choose status</option>
             <option value="Not valid">Not valid</option>
-            <option value="Initiate">Valid</option>
+            <option value="valid">valid</option>
          </select>
 
             <div *ngIf="ProjectForm.get('status').invalid && (ProjectForm.get('name').dirty || ProjectForm.get('status').touched)" class="alert alert-danger">
